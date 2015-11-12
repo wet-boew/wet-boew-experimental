@@ -1,13 +1,5 @@
 ( function( window ) {
 
-    function isFunction( fn ) {
-        if ( fn && typeof fn === "function" ) {
-            return true;
-        }
-
-        return false;
-    }
-
     var pluginSeed = 0,
     plugin = {
         _init: function() {
@@ -18,7 +10,7 @@
                     loadDependencies( postInit );
                 }
 
-                if ( isFunction( this.preInit ) ) {
+                if ( $.isFunction( this.preInit ) ) {
                     this.preInit( nextStep );
                 } else {
                     nextStep();
@@ -47,11 +39,11 @@
             function nextStep() {
                 var new_settings = settings;
 
-                if ( isFunction( this.beforeCreate ) ) {
+                if ( $.isFunction( this.beforeCreate ) ) {
                     new_settings = this.beforeCreate( new_settings );
                 }
 
-                if ( isFunction( this._create ) ) {
+                if ( $.isFunction( this._create ) ) {
                     var id = $elm.attr( "id" );
 
                     if ( !id ) {
@@ -74,7 +66,7 @@
 
         createFromDOM: function( $elm ) {
             function nextStep() {
-                if ( isFunction( this._settingsFromDOM ) ) {
+                if ( $.isFunction( this._settingsFromDOM ) ) {
                     var data = null;
                     this.create( $elm, this._settingsFromDOM( data ) );
                 }
