@@ -3,22 +3,23 @@
     var pluginSeed = 0,
     plugin = {
         _init: function() {
+            var _this = this;
             function preInit() {
-                $( this ).trigger( "wb.pl-pre-init" );
+                $( _this ).trigger( "wb.pl-pre-init" );
 
                 function nextStep() {
                     loadDependencies( postInit );
                 }
 
-                if ( $.isFunction( this.preInit ) ) {
-                    this.preInit( nextStep );
+                if ( $.isFunction( _this.preInit ) ) {
+                    _this.preInit( nextStep );
                 } else {
                     nextStep();
                 }
             }
 
             function loadDependencies( callback ) {
-                if ( this.deps && this.deps.length && this.deps.length > 0 ) {
+                if ( _this.deps && _this.deps.length && _this.deps.length > 0 ) {
                     callback();
                 } else {
                     callback();
@@ -26,11 +27,11 @@
             }
 
             function postInit() {
-                this.inited = true;
-                $( this ).trigger( "wb.pl-init" );
+                _this.inited = true;
+                $( _this ).trigger( "wb.pl-init" );
             }
 
-            if ( !this.inited ) {
+            if ( !_this.inited ) {
                 preInit();
             }
         },
@@ -77,9 +78,17 @@
                 nextStep();
             }
         }
-    };
+    },
 
-    var wb = {
+    getPlugin = function( $elm ) {
+        for ( plugin in wb.plugins ) {
+            if ( $elm.is( plugin ) ) {
+                return wb.plugins[ plugin ];
+            }
+        }
+    },
+
+    wb = {
         plugin: plugin,
         plugins: {},
         instances: {},
@@ -91,23 +100,21 @@
     // TODO: Find a better way to defer to after plugins are loaded
     setTimeout( function() {
         var unique = [],
-            plugins = Object.keys( wb.plugins ),
             $instances = $(
-                plugins.join( "," )
+                Object.keys( wb.plugins ).join( "," )
             ),
             instancesLength = $instances.length,
-            pluginsLength = plugins.length,
-            i, $instance, p, plugin;
+            i, $instance;
 
         for ( i = 0; i < instancesLength; i += 1 ) {
             $instance = $( $instances[ i ] );
-            for ( p = 0; p < pluginsLength; p += 1 ) {
-                plugin = plugins[ p ];
-                if ( $instance.is( plugin ) &&
-                        unique.indexOf( plugin ) === -1 ) {
-                    wb.plugins[ plugin ]._init();
-                    unique.push( plugin );
-                }
+            plugin = getPlugin( $instance );
+            if ( plugin && unique.indexOf( plugin.selector ) === -1 ) {
+                $( plugin ).on( "wb.pl-init", function() {
+                    window.console.log( plugin );
+                } );
+                plugin._init();
+                unique.push( plugin.selector );
             }
         }
 
