@@ -88,6 +88,10 @@
         }
     },
 
+    createInitialInstances = function( plugin ) {
+        window.console.log( plugin );
+    },
+
     wb = {
         plugin: plugin,
         plugins: {},
@@ -110,9 +114,7 @@
             $instance = $( $instances[ i ] );
             plugin = getPlugin( $instance );
             if ( plugin && unique.indexOf( plugin.selector ) === -1 ) {
-                $( plugin ).on( "wb.pl-init", function() {
-                    window.console.log( plugin );
-                } );
+                $( plugin ).on( "wb.pl-init", createInitialInstances );
                 plugin._init();
                 unique.push( plugin.selector );
             }
