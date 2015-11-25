@@ -47,14 +47,16 @@
         },
 
         create: function( $elm, settings ) {
+            var _this = this;
+
             function nextStep() {
                 var new_settings = settings;
 
-                if ( $.isFunction( this.beforeCreate ) ) {
-                    new_settings = this.beforeCreate( new_settings );
+                if ( $.isFunction( _this.beforeCreate ) ) {
+                    new_settings = _this.beforeCreate( new_settings );
                 }
 
-                if ( $.isFunction( this._create ) ) {
+                if ( $.isFunction( _this._create ) ) {
                     var id = $elm.attr( "id" );
 
                     if ( !id ) {
@@ -64,28 +66,33 @@
 
                     // TODO: Merge setting with defaults
 
-                    wb.instances[ id ] = this._create( new_settings );
+                    wb.instances[ id ] = _this._create( new_settings );
                 }
             }
 
-            if ( !this.inited ) {
-                $( this ).on( "wb.pl-init", nextStep );
+            if ( !_this.inited ) {
+                $( _this ).on( "wb.pl-init", nextStep );
+                _this._init();
+
             } else {
                 nextStep();
             }
         },
 
         createFromDOM: function( $elm ) {
+            var _this = this;
+
             function nextStep() {
-                if ( $.isFunction( this._settingsFromDOM ) ) {
+                if ( $.isFunction( _this._settingsFromDOM ) ) {
                     var data = null;
-                    this.create( $elm, this._settingsFromDOM( data ) );
+                    _this.create( $elm, _this._settingsFromDOM( data ) );
                 }
             }
-            if ( !this.inited ) {
-                $( this ).on( "wb.pl-init", nextStep );
+            if ( !_this.inited ) {
+                $( _this ).on( "wb.pl-init", nextStep );
             } else {
                 nextStep();
+                _this._init();
             }
         }
     },
