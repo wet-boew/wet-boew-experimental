@@ -8,11 +8,19 @@
                 $( _this ).trigger( "wb.pl-pre-init" );
 
                 function nextStep() {
-                    loadDependencies( postInit );
+                    var callback;
+                    if ( $.isFunction( _this._postInit ) ) {
+                        callback = function() {
+                            _this._postInit( postInit );
+                        };
+                    } else {
+                        callback = postInit;
+                    }
+                    loadDependencies( callback );
                 }
 
-                if ( $.isFunction( _this.preInit ) ) {
-                    _this.preInit( nextStep );
+                if ( $.isFunction( _this._preInit ) ) {
+                    _this._preInit( nextStep );
                 } else {
                     nextStep();
                 }
@@ -20,6 +28,8 @@
 
             function loadDependencies( callback ) {
                 if ( _this.deps && _this.deps.length && _this.deps.length > 0 ) {
+
+                    // TODO: Add dependency loader
                     callback();
                 } else {
                     callback();
