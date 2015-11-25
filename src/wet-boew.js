@@ -50,10 +50,8 @@
             var _this = this;
 
             function nextStep() {
-                var new_settings = settings;
-
                 if ( $.isFunction( _this.beforeCreate ) ) {
-                    new_settings = _this.beforeCreate( new_settings );
+                    _this.beforeCreate( $elm, settings );
                 }
 
                 if ( $.isFunction( _this._create ) ) {
@@ -66,7 +64,7 @@
 
                     // TODO: Merge setting with defaults
 
-                    wb.instances[ id ] = _this._create( new_settings );
+                    wb.instances[ id ] = $.extend( {}, { $elm: $elm }, _this._create( $elm, settings ) );
                 }
             }
 
@@ -79,13 +77,20 @@
             }
         },
 
-        createFromDOM: function( $elm ) {
-            var _this = this;
+        createFromDOM: function( $elms ) {
+            var _this = this,
+                elmsLength = $elms.length;
 
             function nextStep() {
-                if ( $.isFunction( _this._settingsFromDOM ) ) {
-                    var data = null;
-                    _this.create( $elm, _this._settingsFromDOM( data ) );
+                var settings, e, $elm;
+
+                for ( e = 0; e < elmsLength; e += 1 ) {
+                    $elm = $elms.eq( e );
+                    if ( $.isFunction( _this._settingsFromDOM ) ) {
+                        settings = _this._settingsFromDOM( $elm );
+                    }
+
+                    _this.create( $elm, settings );
                 }
             }
             if ( !_this.inited ) {
@@ -105,8 +110,10 @@
         }
     },
 
-    createInitialInstances = function( plugin ) {
-        window.console.log( plugin );
+    createInitialInstances = function( event ) {
+        var plugin = event.target;
+
+        plugin.createFromDOM( $( plugin.selector ) );
     },
 
     wb = {
