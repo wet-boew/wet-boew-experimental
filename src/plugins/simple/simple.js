@@ -1,9 +1,14 @@
 ( function( window, wb, $ ) {
-    var selector = ".wb-simple",
+    var name = "wb-simple",
+        selector = "." + name,
         plugin = {
+            name: name,
             selector: selector,
-            _create: function( $elm ) {
-                $elm.text( "simple plugin" );
+            defaults: {
+                name: "world"
+            },
+            _create: function( $elm, settings ) {
+                $elm.text( "Simple Plugin: Hello " + settings.name );
             }
         };
 

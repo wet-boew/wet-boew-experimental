@@ -46,6 +46,12 @@
             }
         },
 
+        _settingsFromDOM: function( $elm ) {
+            var dataAttr = wb.helpers.toDOMStringMapName( this.name );
+
+            return $elm.data( dataAttr );
+        },
+
         create: function( $elm, settings ) {
             var _this = this;
 
@@ -63,7 +69,14 @@
 
                 // TODO: Merge setting with defaults
                 if ( $.isFunction( _this._create ) ) {
-                    wb.instances[ id ] = $.extend( {}, { $elm: $elm }, _this._create( $elm, settings ) );
+                    wb.instances[ id ] = $.extend(
+                        {},
+                        { $elm: $elm },
+                        _this._create(
+                            $elm,
+                            $.extend( {}, _this.defaults, settings )
+                        )
+                    );
                 }
             }
 
