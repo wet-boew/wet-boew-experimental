@@ -54,16 +54,15 @@
                     _this.beforeCreate( $elm, settings );
                 }
 
+                var id = $elm.attr( "id" );
+
+                if ( !id ) {
+                    id = "wb-pl-" + ( pluginSeed += 1 );
+                    $elm.attr( "id", id );
+                }
+
+                // TODO: Merge setting with defaults
                 if ( $.isFunction( _this._create ) ) {
-                    var id = $elm.attr( "id" );
-
-                    if ( !id ) {
-                        id = "wb-pl-" + ( pluginSeed += 1 );
-                        $elm.attr( "id", id );
-                    }
-
-                    // TODO: Merge setting with defaults
-
                     wb.instances[ id ] = $.extend( {}, { $elm: $elm }, _this._create( $elm, settings ) );
                 }
             }
