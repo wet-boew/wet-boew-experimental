@@ -2,16 +2,16 @@
 
     var pluginSeed = 0,
     plugin = {
-        _init: function() {
+        _initialize: function() {
             var _this = this;
             function preInit() {
                 $( _this ).trigger( "wb.pl-pre-init" );
 
                 function nextStep() {
                     var callback;
-                    if ( $.isFunction( _this._postInit ) ) {
+                    if ( $.isFunction( _this._init ) ) {
                         callback = function() {
-                            _this._postInit( postInit );
+                            _this._init( postInit );
                         };
                     } else {
                         callback = postInit;
@@ -37,8 +37,16 @@
             }
 
             function postInit() {
-                _this.inited = true;
-                $( _this ).trigger( "wb.pl-init" );
+                function nextStep() {
+                    _this.inited = true;
+                    $( _this ).trigger( "wb.pl-init" );
+                }
+
+                if ( $.isFunction( _this._postInit ) ) {
+                    _this._postInit( nextStep );
+                } else {
+                    nextStep();
+                }
             }
 
             if ( !_this.inited ) {
@@ -109,7 +117,7 @@
                 $( _this ).on( "wb.pl-init", nextStep );
             } else {
                 nextStep();
-                _this._init();
+                _this._initialize();
             }
         }
     },
@@ -151,7 +159,7 @@
             plugin = getPlugin( $instance );
             if ( plugin && unique.indexOf( plugin.selector ) === -1 ) {
                 $( plugin ).on( "wb.pl-init", createInitialInstances );
-                plugin._init();
+                plugin._initialize();
                 unique.push( plugin.selector );
             }
         }
