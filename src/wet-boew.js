@@ -38,7 +38,7 @@
 
             function postInit() {
                 function nextStep() {
-                    _this.inited = true;
+                    _this.initialized = true;
                     $( _this ).trigger( "wb.pl-init" );
                 }
 
@@ -49,7 +49,7 @@
                 }
             }
 
-            if ( !_this.inited ) {
+            if ( !_this.initialized ) {
                 preInit();
             }
         },
@@ -75,7 +75,6 @@
                     $elm.attr( "id", id );
                 }
 
-                // TODO: Merge setting with defaults
                 if ( $.isFunction( _this._create ) ) {
                     wb.instances[ id ] = $.extend(
                         {},
@@ -88,7 +87,7 @@
                 }
             }
 
-            if ( !_this.inited ) {
+            if ( !_this.initialized ) {
                 $( _this ).on( "wb.pl-init", nextStep );
                 _this._init();
 
@@ -113,7 +112,7 @@
                     _this.create( $elm, settings );
                 }
             }
-            if ( !_this.inited ) {
+            if ( !_this.initialized ) {
                 $( _this ).on( "wb.pl-init", nextStep );
             } else {
                 nextStep();
@@ -123,12 +122,7 @@
     },
 
     addPlugin = function( plugin ) {
-        var selector = plugin.selector;
-
-        if ( plugin.name !== "selectors" ) {
-            wb.plugins[ selector ] = $.extend( {}, wb.plugin, plugin );
-            wb.plugins.selectors.push( selector );
-        }
+        wb.plugins[ plugin.name ] = $.extend( {}, wb.plugin, plugin );
     },
 
     getPlugin = function( $elm ) {
@@ -142,44 +136,60 @@
         }
     },
 
-    createInitialInstances = function( event ) {
-        var plugin = event.target;
+    getSelectors = function() {
+        var selectors = [],
+            p;
 
-        plugin.createFromDOM( $( plugin.selector ) );
+        for ( p in wb.plugins ) {
+            selectors.push( wb.plugins[ p ].selector );
+        }
+
+        return selectors;
+    },
+
+    processTree = function( $tree ) {
+        var unique = [],
+            nextStep = function() {
+                plugin.createFromDOM( $pluginInstances );
+            },
+            selectors, $instances, instancesLength, i, $instance, $pluginInstances;
+
+        $tree = $tree || $( document );
+        selectors =  wb.getSelectors().join( "," ),
+        $instances = $tree.find( selectors );
+        instancesLength = $instances.length;
+
+        for ( i = 0; i < instancesLength; i += 1 ) {
+            $instance = $( $instances[ i ] );
+            plugin = getPlugin( $instance );
+            if ( plugin ) {
+                $pluginInstances = $tree.find( plugin.selector );
+
+                if ( !plugin.initialized ) {
+                    $( plugin ).on( "wb.pl-init", nextStep );
+                    plugin._initialize();
+                    unique.push( plugin.name );
+                } else if ( unique.indexOf( plugin.name ) === -1 ) {
+                    nextStep();
+                }
+            }
+        }
     },
 
     wb = {
         addPlugin: addPlugin,
         callbacks: {},
+        getSelectors: getSelectors,
         instances: {},
         plugin: plugin,
-        plugins: {
-            selectors: []
-        }
+        plugins: {},
+        processTree: processTree
     };
 
     // TODO: Load i18n
 
     // TODO: Find a better way to defer to after plugins are loaded
-    setTimeout( function() {
-        var unique = [],
-            $instances = $(
-                wb.plugins.selectors.join( "," )
-            ),
-            instancesLength = $instances.length,
-            i, $instance;
-
-        for ( i = 0; i < instancesLength; i += 1 ) {
-            $instance = $( $instances[ i ] );
-            plugin = getPlugin( $instance );
-            if ( plugin && unique.indexOf( plugin.selector ) === -1 ) {
-                $( plugin ).on( "wb.pl-init", createInitialInstances );
-                plugin._initialize();
-                unique.push( plugin.selector );
-            }
-        }
-
-    }, 500 );
+    setTimeout( processTree, 500 );
 
     window.wb = wb;
 } )( window );
