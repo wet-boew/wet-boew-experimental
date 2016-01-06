@@ -61,7 +61,8 @@
         },
 
         create: function( $elm, settings ) {
-            var _this = this;
+            var _this = this,
+                mergedSettings;
 
             function nextStep() {
                 if ( $.isFunction( _this.beforeCreate ) ) {
@@ -76,13 +77,12 @@
                 }
 
                 if ( $.isFunction( _this._create ) ) {
+                    mergedSettings = $.extend( {}, _this.defaults, settings );
                     wb.instances[ id ] = $.extend(
                         {},
                         { $elm: $elm },
-                        _this._create(
-                            $elm,
-                            $.extend( {}, _this.defaults, settings )
-                        )
+                        mergedSettings,
+                        _this._create( $elm, mergedSettings )
                     );
                 }
             }
