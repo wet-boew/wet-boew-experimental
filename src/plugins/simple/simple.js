@@ -12,5 +12,5 @@
             }
         };
 
-    wb.plugins[ selector ] = $.extend( {}, wb.plugin, plugin );
+    wb.addPlugin( plugin );
 } )( window, window.wb, jQuery );

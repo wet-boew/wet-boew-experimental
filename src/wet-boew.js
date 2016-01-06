@@ -122,10 +122,22 @@
         }
     },
 
+    addPlugin = function( plugin ) {
+        var selector = plugin.selector;
+
+        if ( plugin.name !== "selectors" ) {
+            wb.plugins[ selector ] = $.extend( {}, wb.plugin, plugin );
+            wb.plugins.selectors.push( selector );
+        }
+    },
+
     getPlugin = function( $elm ) {
-        for ( plugin in wb.plugins ) {
-            if ( $elm.is( plugin ) ) {
-                return wb.plugins[ plugin ];
+        var p, plugin;
+
+        for ( p in wb.plugins ) {
+            plugin = wb.plugins[ p ];
+            if ( $elm.is( plugin.selector ) ) {
+                return plugin;
             }
         }
     },
@@ -137,10 +149,13 @@
     },
 
     wb = {
-        plugin: plugin,
-        plugins: {},
+        addPlugin: addPlugin,
+        callbacks: {},
         instances: {},
-        callbacks: {}
+        plugin: plugin,
+        plugins: {
+            selectors: []
+        }
     };
 
     // TODO: Load i18n
@@ -149,7 +164,7 @@
     setTimeout( function() {
         var unique = [],
             $instances = $(
-                Object.keys( wb.plugins ).join( "," )
+                wb.plugins.selectors.join( "," )
             ),
             instancesLength = $instances.length,
             i, $instance;
