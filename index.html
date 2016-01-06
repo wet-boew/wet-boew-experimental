@@ -12,4 +12,12 @@
   <script src="src/wet-boew.js"></script>
   <script src="src/helpers.js"></script>
   <script src="src/plugins/simple/simple.js"></script>
+  <script>
+    setTimeout( function(){
+        wb.processTree(
+            $('<div><p class="test3 wb-simple" data-wb-simple=\'{"name":"mario"}\'></p></div>').appendTo("body")
+        );
+        wb.instances['wb-pl-2'].goodbye();
+    }, 1000)
+  </script>
 </html>

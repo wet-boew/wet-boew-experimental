@@ -1,6 +1,9 @@
 ( function( window, wb, $ ) {
     var name = "wb-simple",
         selector = "." + name,
+        goodbye = function() {
+            this.$elm.find( ".address" ).text( "Goodbye" );
+        },
         plugin = {
             name: name,
             selector: selector,
@@ -8,7 +11,11 @@
                 name: "world"
             },
             _create: function( $elm, settings ) {
-                $elm.text( "Simple Plugin: Hello " + settings.name );
+                $elm.append( "Simple Plugin: <span class='address'>Hello</span> " + settings.name );
+
+                return {
+                    goodbye: goodbye
+                };
             }
         };
 
