@@ -77,11 +77,13 @@
                 }
 
                 if ( $.isFunction( _this._create ) ) {
-                    mergedSettings = $.extend( {}, _this.defaults, settings );
+                    mergedSettings = $.extend( true, {}, _this.defaults, settings );
                     wb.instances[ id ] = $.extend(
                         {},
-                        { $elm: $elm },
-                        mergedSettings,
+                        {
+                            $elm: $elm,
+                            settings: mergedSettings
+                        },
                         _this._create( $elm, mergedSettings )
                     );
                 }
