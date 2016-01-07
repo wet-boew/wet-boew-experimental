@@ -189,6 +189,10 @@
     };
 
     // TODO: Load i18n
+    wb.i18n = {
+        "hello": "Hello",
+        "goodbye": "Goodbye"
+    };
 
     // TODO: Find a better way to defer to after plugins are loaded
     setTimeout( processTree, 500 );

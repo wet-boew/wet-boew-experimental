@@ -15,9 +15,12 @@
   <script>
     setTimeout( function(){
         wb.processTree(
-            $('<div><p class="test3 wb-simple" data-wb-simple=\'{"name":"mario"}\'></p></div>').appendTo("body")
+            $('<div><p class="test3 wb-simple" data-wb-simple=\'{"name":"mario", "i18n": {"hello": "Howdy"}}\'></p></div>').appendTo("body")
         );
         wb.instances['wb-pl-2'].goodbye();
-    }, 1000)
+    }, 1000);
+    setTimeout( function(){
+        wb.instances['wb-pl-3'].goodbye();
+    }, 2000);
   </script>
 </html>

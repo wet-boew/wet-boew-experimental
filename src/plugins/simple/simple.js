@@ -1,23 +1,29 @@
 ( function( window, wb, $ ) {
     var name = "wb-simple",
-        selector = "." + name,
-        goodbye = function() {
-            this.$elm.find( ".address" ).text( "Goodbye" );
-        },
-        plugin = {
+        selector = "." + name;
+
+    wb.addPlugin(
+        {
             name: name,
             selector: selector,
             defaults: {
-                name: "world"
+                name: "world",
+                i18n: {
+                    "hello": "Hello",
+                    "goodbye": "Goodbye"
+                }
             },
             _create: function( $elm, settings ) {
-                $elm.append( "Simple Plugin: <span class='address'>Hello</span> " + settings.name );
+                $elm.append( "Simple Plugin: <span class='address'>" + settings.i18n.hello + "</span> " + settings.name );
 
                 return {
-                    goodbye: goodbye
+                    goodbye: this.goodbye
                 };
+            },
+            goodbye: function() {
+                this.$elm.find( ".address" ).text( this.settings.i18n.goodbye );
             }
-        };
+        }
+    );
 
-    wb.addPlugin( plugin );
 } )( window, window.wb, jQuery );
