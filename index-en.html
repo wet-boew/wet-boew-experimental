@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+      <p class="test1 wb-simple"></p>
+      <p class="test2 wb-simple" data-wb-simple='{"name":"laurent"}'></p>
+  </body>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="src/wet-boew.js"></script>
+  <script src="src/helpers.js"></script>
+  <script src="src/plugins/simple/simple.js"></script>
+  <script>
+    setTimeout( function(){
+        wb.processTree(
+            $('<div><p class="test3 wb-simple" data-wb-simple=\'{"name":"mario", "i18n": {"hello": "Howdy"}}\'></p></div>').appendTo("body")
+        );
+        wb.instances['wb-pl-2'].goodbye();
+    }, 1000);
+    setTimeout( function(){
+        wb.instances['wb-pl-3'].goodbye();
+    }, 2000);
+  </script>
+</html>

@@ -9,8 +9,8 @@
             defaults: {
                 name: "world",
                 i18n: {
-                    "hello": "Hello",
-                    "goodbye": "Goodbye"
+                    "hello": "",
+                    "goodbye": ""
                 }
             },
             _create: function( $elm, settings ) {
