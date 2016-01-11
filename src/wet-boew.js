@@ -221,8 +221,8 @@
             }
         }
 
-        processTree();
         wb.$doc.trigger( "wb-ready.wb" );
+        processTree();
     } );
 
     window.wb = wb;
