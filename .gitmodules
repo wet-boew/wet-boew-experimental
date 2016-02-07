@@ -1,0 +1,6 @@
+[submodule "libs/requirejs"]
+	path = libs/requirejs
+	url = https://github.com/jrburke/requirejs.git
+[submodule "libs/bootstrap"]
+	path = libs/bootstrap
+	url = https://github.com/twbs/bootstrap.git
