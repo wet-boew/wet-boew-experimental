@@ -16,5 +16,5 @@ This repository is experimental in nature to allow for the development community
 	- You might see more than one bug that you’d like to fix. Be sure that if you do, submit them as two separate pull requests. A lengthy pull request is unlikely to be dealt with quickly. It could be difficult for the original developer to try and follow your steps.
 * Stick To Existing Conventions
 	- For Javascript portions of WET we follow the  [ JQuery Style Guide ](https://contribute.jquery.org/style-guide/js/) style guide.
-* Careful when Copy-And-Paste Code
+* Careful When You Copy-And-Paste Code
 	 - Browsers can be very finicky about reading the spaces in code, and copy-paste adds new spaces you can’t even see.
