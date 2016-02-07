@@ -9,7 +9,7 @@ Table of Contents
 -----------------
 * [Purpose](#purpose)
 * [Code Quality](#code-quality)
-* [Golden Rules to remeber](#golden-rules-to-remeber)
+* [Golden Rules to remember](#golden-rules-to-remeber)
 * [Making A Pull Request](#making-a-pull-request)
 
 Purpose
