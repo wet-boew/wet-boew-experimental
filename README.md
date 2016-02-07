@@ -1,15 +1,23 @@
-# Web Experience Toolkit (WET) / Boîte à outils de l’expérience Web (BOEW)
-## Experimental Repo
+# Web Experience Toolkit (WET) / Boîte à outils de l’expérience Web (BOEW) - Experimental Repo
 
-### Code Quality
-This repository is experimental in nature to allow for the development community to experiment new concepts and features for future major iterations of WET. The code sharing and merging in this repository is can be rather unstable in terms of browser compatibility at times and shall be considered pre-alpha at best in terms of status.
+## Table of Contents
+1. [Purpose of Repository](#purpose)
+1. [Code Quality](#code-quality)
+2. [Golden Rules to remeber](#golden-rules-to-remeber)
+3. [Making A Pull Request](#making-a-pull-request)
 
-### Golden Rules to remeber
+## Purpose of Repository
+This repository is experimental in nature to allow for the development community to experiment new concepts and features for future major iterations of WET.
+
+## Code Quality
+The code quality in this repository can be rather unstable in from time to time, since most of the code is considered pre-alpha in termos of readines at best. If you are interested in stable production ready code please refer to main (WET-BOEW repository)[https://github.com/wet-boew/wet-boew].
+
+## Golden Rules to Remeber
 * Try to self assign to issues it helps people know what everyone is working on.
 * Make sure you only add the files you want to add, especially if you are not using a git ignore file.
 * It is ok to compromise your local branch, but never the remote!
 
-### Etiquette Tips For Making A Pull Request
+## Making A Pull Request
 * Be Clear And Specific
 	- Technically, GitHub allows you to submit a pull request with no comment at all. Try to leverage and use the comment box at all times. Carefully explain what the problem is and how your change fixes it. It’s also helpful to explain how the developer can recreate the problem you’re seeing. You can also include screenshots to show the tests and improvements you’ve done.
 * Keep Changes Small
