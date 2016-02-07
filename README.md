@@ -14,7 +14,7 @@ Table of Contents
 
 Purpose
 -------
-This repository is experimental in nature to allow for the development community to experiment new concepts and features for future major iterations of WET.
+The purpose of this repository is to allow for the development community to experiment new concepts and features for future major iterations of WET. All the code in this repository is explorative in nature, and should not be viewed as official.
 
 Code Quality
 ------------
