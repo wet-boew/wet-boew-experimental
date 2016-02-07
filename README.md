@@ -14,11 +14,11 @@ Table of Contents
 
 Purpose
 -------
-The purpose of this repository is to allow for the development community to experiment new concepts and features for future major iterations of WET. All the code in this repository is explorative in nature, and should not be viewed as official.
+The purpose of this repository is to allow for the development community to experiment with new concepts and features for future major iterations. All the code in this repository is explorative at best, and should not be viewed as official.
 
 Code Quality
 ------------
-The code quality in this repository can be rather unstable in from time to time, since most of the code is considered pre-alpha in termos of readines at best. If you are interested in stable production ready code please refer to main [WET-BOEW repository](https://github.com/wet-boew/wet-boew).
+The code quality in this repository can be rather unstable from time to time, since most of the code is considered pre-alpha in terms of production quality. If you are interested in production ready code please refer to the main [WET-BOEW repository](https://github.com/wet-boew/wet-boew).
 
 Golden Rules to Remeber
 -----------------------
@@ -29,10 +29,10 @@ Golden Rules to Remeber
 Making A Pull Request
 ---------------------
 * Be Clear And Specific
-	- Technically, GitHub allows you to submit a pull request with no comment at all. Try to leverage and use the comment box at all times. Carefully explain what the problem is and how your change fixes it. It’s also helpful to explain how the developer can recreate the problem you’re seeing. You can also include screenshots to show the tests and improvements you’ve done.
+	- Technically, GitHub allows you to submit a pull request with no comment at all. Try to use the comment box at all times. Carefully explain what the problem is and how your change fixes it. It's also helpful to explain how the developer can recreate the problem you're fixing. You can also include screenshots to show the tests and improvements you've done.
 * Keep Changes Small
-	- You might see more than one bug that you’d like to fix. Be sure that if you do, submit them as two separate pull requests. A lengthy pull request is unlikely to be dealt with quickly. It could be difficult for the original developer to try and follow your steps.
+	- You might see more than one bug that you'd like to fix. Be sure that if you do, submit them as two separate pull requests. A lengthy pull request is unlikely to be dealt with quickly. It could be difficult for us to try and follow your steps.
 * Stick To Existing Conventions
 	- For Javascript portions of WET we follow the  [JQuery Style Guide](https://contribute.jquery.org/style-guide/js/) style guide.
 * Careful When You Copy-And-Paste Code
-	 - Browsers can be very finicky about reading the spaces in code, and copy-paste adds new spaces you can’t even see.
+	 - Browsers can be very finicky about reading the spaces in code, and copy-paste adds new spaces you can't even see.
