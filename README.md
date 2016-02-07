@@ -1,10 +1,10 @@
 # Web Experience Toolkit (WET) / Boîte à outils de l’expérience Web (BOEW) - Experimental Repo
 
 ## Table of Contents
-1. [Purpose](#purpose)
-1. [Code Quality](#code-quality)
-2. [Golden Rules to remeber](#golden-rules-to-remeber)
-3. [Making A Pull Request](#making-a-pull-request)
+* [Purpose](#purpose)
+* [Code Quality](#code-quality)
+* [Golden Rules to remeber](#golden-rules-to-remeber)
+* [Making A Pull Request](#making-a-pull-request)
 
 ## Purpose
 This repository is experimental in nature to allow for the development community to experiment new concepts and features for future major iterations of WET.
