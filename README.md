@@ -1,1 +1,20 @@
-# wet-boew-experimental
+# Web Experience Toolkit (WET) / Boîte à outils de l’expérience Web (BOEW)
+## Experimental Repo
+
+### Code Quality
+This repository is experimental in nature to allow for the development community to experiment new concepts and features for future major iterations of WET. The code sharing and merging in this repository is can be rather unstable in terms of browser compatibility at times and shall be considered pre-alpha at best in terms of status.
+
+### Golden Rules to remeber
+* Try to self assign to issues it helps people know what everyone is working on.
+* Make sure you only add the files you want to add, especially if you are not using a git ignore file.
+* It is ok to compromise your local branch, but never the remote!
+
+### Etiquette Tips For Making A Pull Request
+* Be Clear And Specific
+	- Technically, GitHub allows you to submit a pull request with no comment at all. Try to leverage and use the comment box at all times. Carefully explain what the problem is and how your change fixes it. It’s also helpful to explain how the developer can recreate the problem you’re seeing. You can also include screenshots to show the tests and improvements you’ve done.
+* Keep Changes Small
+	- You might see more than one bug that you’d like to fix. Be sure that if you do, submit them as two separate pull requests. A lengthy pull request is unlikely to be dealt with quickly. It could be difficult for the original developer to try and follow your steps.
+* Stick To Existing Conventions
+	- For Javascript portions of WET we follow the  [ JQuery Style Guide ](https://contribute.jquery.org/style-guide/js/) style guide.
+* Careful when Copy-And-Paste Code
+	 - Browsers can be very finicky about reading the spaces in code, and copy-paste adds new spaces you can’t even see.
