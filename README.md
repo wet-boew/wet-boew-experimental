@@ -1,5 +1,5 @@
-Experimental Repo
-=================
+Experimental Repository
+=======================
 
 Web Experience Toolkit (WET) / Boîte à outils de l’expérience Web (BOEW)
 ------------------------------------------------------------------------
@@ -35,4 +35,5 @@ Making A Pull Request
 * Stick To Existing Conventions
 	- For Javascript portions of WET we follow the  [JQuery Style Guide](https://contribute.jquery.org/style-guide/js/) style guide.
 * Careful When You Copy-And-Paste Code
-	 - Browsers can be very finicky about reading the spaces in code, and copy-paste adds new spaces you can't even see.
+    - Browsers can be very finicky about reading the spaces in code, and copy-paste adds new spaces you can't even see.
+

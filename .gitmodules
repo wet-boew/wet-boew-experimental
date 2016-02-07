@@ -1,0 +1,21 @@
+[submodule "libs/requirejs"]
+	path = libs/requirejs
+	url = https://github.com/jrburke/requirejs.git
+[submodule "libs/bootstrap"]
+	path = libs/bootstrap
+	url = https://github.com/twbs/bootstrap.git
+[submodule "themes/theme-base"]
+	path = themes/theme-base
+	url = https://github.com/wet-boew/theme-base.git
+[submodule "themes/theme-gc-intranet"]
+	path = themes/theme-gc-intranet
+	url = https://github.com/wet-boew/theme-gc-intranet.git
+[submodule "themes/theme-gcwu-fegc"]
+	path = themes/theme-gcwu-fegc
+	url = https://github.com/wet-boew/theme-gcwu-fegc.git
+[submodule "themes/theme-ogpl"]
+	path = themes/theme-ogpl
+	url = https://github.com/wet-boew/theme-ogpl.git
+[submodule "themes/theme-gcweb"]
+	path = themes/theme-gcweb
+	url = https://github.com/wet-boew/theme-gcweb.git
