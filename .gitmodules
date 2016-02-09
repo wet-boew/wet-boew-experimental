@@ -19,3 +19,7 @@
 [submodule "themes/theme-gcweb"]
 	path = themes/theme-gcweb
 	url = https://github.com/wet-boew/theme-gcweb.git
+	
+[submodule "libs/almond"]
+	path = libs/almond
+	url = https://github.com/jrburke/almond.git
