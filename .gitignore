@@ -1,1 +1,57 @@
+##################
+# NodeJS
+##################
+# Logs
+logs
+*.log
+npm-debug.log*
+pids
+*.pid
+*.seed
+lib-cov
+coverage
+.grunt
+.lock-wscript
+
+node_modules
+.npm
+.node_repl_history
+
+##################
+# OSX
+##################
 .DS_Store
+.AppleDouble
+.LSOverride
+
+##################
+# Notepad++
+##################
+*.bak
+
+##################
+# Sublime Text
+##################
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+sftp-config.json
+
+#################
+# NetBeans
+##################
+nbproject/private/
+nbbuild/
+nbdist/
+nbactions.xml
+.nb-gradle/
+
+
+#################
+# General Project
+##################
+dist
+build
+
