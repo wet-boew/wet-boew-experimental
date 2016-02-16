@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>{{ title }}</title>
+</head>
+<body>
+	<header>
+		{% block header %}
+		<nav>
+			<ul>
+				<li><a href="#">Navigation</a></li>
+			</ul>
+		</nav>
+		{% endblock %}
+	</header>
+	<main>
+		{% block content %}
+		<h1>{{ title }}</h1>
+		<p>Hello there</p>
+		{% endblock %}
+	</main>
+	<footer>
+		{% block footer %}
+			<nav>
+				<ul>
+					<li><a href="#">Footer Navigation</a></li>
+				</ul>
+			</nav>
+	    {% endblock %}
+	</footer>
+</body>
+</html>

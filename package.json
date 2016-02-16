@@ -7,18 +7,6 @@
     "test": "test"
   },
   "dependencies": {},
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-cli": "^0.1.13",
-    "grunt-contrib-clean": "^0.7.0",
-    "grunt-contrib-copy": "^0.8.2",
-    "grunt-contrib-imagemin": "^1.0.0",
-    "grunt-contrib-requirejs": "^0.4.4",
-    "grunt-pleeease": "^1.4.0",
-    "jit-grunt": "^0.9.1",
-    "load-grunt-config": "^0.19.1",
-    "load-grunt-tasks": "^3.4.0"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,5 +15,27 @@
     "url": "https://www.github.com/wet-boew/wet-boew-experimental.git"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^6.3.3",
+    "browser-sync": "^2.11.1",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-copy": "0.0.2",
+    "gulp-flatten": "^0.2.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-nunjucks-render": "^2.0.0",
+    "gulp-postcss": "^6.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-rm": "^1.0.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.2",
+    "gulp-webpack": "^1.5.0",
+    "imagemin-pngquant": "^4.2.0",
+    "merge-stream": "^1.0.0",
+    "precss": "^1.4.0"
+  }
 }
