@@ -48,6 +48,11 @@ nbdist/
 nbactions.xml
 .nb-gradle/
 
+#################
+# Others
+##################
+.gitkeep
+
 
 #################
 # General Project
