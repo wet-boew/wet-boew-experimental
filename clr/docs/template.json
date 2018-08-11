@@ -1,0 +1,25 @@
+[
+	{"<>":"section","html":[
+    {"<>":"div","class":"row","html":[
+        {"<>":"div","class":"col-md-12","html":[
+            {"<>":"h2","class":"h1","html":"{{ title }}"},
+            {"<>":"p","html":"{{ tagline }}"}
+          ]}
+      ]},
+    {"<>":"div","class":"wb-eqht row","id":"wb-auto-3","html":[
+        {"<>":"section","class":"col-lg-4 col-md-6","html":[
+            {"<>":"h3","class":"h5","html":[
+                {"<>":"a","href":"{{ link }}","rel":"external","html":"{{ title }}"}
+              ]},
+            {"<>":"p","html":"{{ abstract }}"}
+          ]}
+      ]},
+    {"<>":"div","class":"row mrgn-tp-lg","html":[
+        {"<>":"p","class":"col-md-12 text-right learnmore","html":[
+            {"<>":"strong","html":[
+                {"<>":"a","href":"{{ data.more.link }}","html":"{{ data.more.title }}"}
+              ]}
+          ]}
+      ]}
+  ]}
+]

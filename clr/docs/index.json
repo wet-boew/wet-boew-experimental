@@ -1,0 +1,44 @@
+{
+	<!--#if expr="$QUERY_STRING = /wb5=template/" -->
+	"template" : <!--#include virtual="/template.json" -->,
+	<!--#endif -->
+	"metadata": [
+		{ "lang": "en"},
+		{ "name": "description", "content": "Hello there"},
+		{ "property": "dcterms.title", "content" : "Home"},
+		{ "property": "dcterms.description", "content" : "Get quick, easy access to all Government of Canada services and information."},
+		{ "property":"dcterms.language", "title":"ISO639-2/T","content":"eng"},
+		{ "property":"dcterms.subject", "title":"gccore", "content":"GV Government and Politics;Government services"},
+		{ "property":"dcterms.issued", "title":"W3CDTF", "content":"2013-12-13" },
+		{ "property":"dcterms.modified", "title":"W3CDTF", "content":"2018-07-16" },
+		{ "property":"dcterms.spatial", "content":"Canada"},
+		{ "property":"dcterms.type", "content":"navigation page"}
+	],
+	"promotions": [
+		{ "type": "carousel",
+			"items": [
+				{ "image": "https://www.canada.ca/content/dam/canada/carousel/20180709-1-1170x347.jpg", "text": "National Digital and Data Consultations - have your say!", "link" : "https://www.ic.gc.ca/eic/site/084.nsf/eng/home?open&WT.mc_id=DigitalDataConsultations_canada.ca-home_carousel_en"},
+				{ "image": "https://www.canada.ca/en/employment-social-development/services/funding/social-development-early-learning-child-care.html", "text": "Early Learning Child concepts centers is now open for funding!", "link": "https://www.canada.ca/en/employment-social-development/services/funding/social-development-early-learning-child-care.html"},
+				{ "image": "https://www.canada.ca/content/dam/canada/carousel/20180621-1-1170x347.jpg", "text": "Cannabis will be legal on October 17th, 2018. Get the facts!", "link": "https://www.canada.ca/en/services/health/campaigns/cannabis.html" }
+			]
+		 }
+	],
+	"data": [
+		{
+			"title" : "Most requested services and information",
+			"tagline": "Get quick, easy access to the Government of Canada's most requested services and information.",
+			"more": { "title": "All services", "link": "https://www.canada.ca/en/services.html" },
+			"data": [
+				{ "title": "Find a Job", "link": "http://www.esdc.gc.ca/en/jobs/opportunities/index.page", "abstract": "Find public and private sector job opportunities and hiring programs, apply or extend a work permit, get a Social Insurance Number, a criminal record check or a security clearance."},
+				{ "title": "Weather", "link": "http://weather.gc.ca/?&wb48617274=F4EE897A", "abstract": "Latest weather, 24hr detailed forecast, and seven day forecast for locations across Canada. View local radar satellite imagery."},
+				{ "title": "Employment Insurance", "link": "https://www.canada.ca/en/services/benefits/ei.html", "abstract": "Information about Employment Insurance (EI) temporary benefits for workers, sickness, fishing and family-related benefits as well as how to apply online and submit a report."},
+				{ "title": "My Service Canada Account", "link": "https://www.canada.ca/en/employment-social-development/services/my-account.html", "abstract": "Provides convenient and secure access to view and update your Employment Insurance (EI), Canada Pension Plan (CPP), and Old Age Security (OAS) information online."},
+				{ "title": "My Account for individuals – Canada Revenue Agency", "link": "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/account-individuals.html", "abstract": "Information on how the service works, how to register for it, and what you can do online."},
+				{ "title": "Canada Pension Plan", "link": "https://www.canada.ca/en/services/benefits/publicpensions/cpp.html", "abstract": "Information on eligibility criteria, deciding when to take your pension, how to apply online and amounts."},
+				{ "title": "Old Age Security pension", "link": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security.html", "abstract": "Information on a pension you can receive if you are 65 years of age or older and have lived in Canada for at least 10 years - even if you have never worked."},
+				{ "title": "Disability benefits", "link": "https://www.canada.ca/en/services/benefits/disability.html", "abstract": "Includes disability pensions and children’s benefits, savings plans and a gasoline tax refund program."},
+				{ "title": "Get a passport", "link": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports.html", "abstract": "Includes passport applications, passport offices and processing times for renewals and new applications."}
+			]
+		}
+	]
+}

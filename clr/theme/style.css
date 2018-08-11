@@ -1,0 +1,44 @@
+/* Base theme */
+
+.body {
+    background:url(flag.gif) #fff center center no-repeat;
+}
+
+.js body {
+   background-image: none !important;
+}
+
+.advertisement .item
+{
+    display: none;
+}
+
+.advertisement .canvas nav
+{
+    bottom: -2.5em;
+	position: absolute;
+}
+
+.advertisement .canvas h2,
+.advertisement .canvas h3,
+.advertisement .canvas h4
+{
+    margin-top: 5px;
+}
+
+.advertisement .item.active
+{
+    display: inline-block;
+}
+
+.advertisement figcaption
+{
+	background: #335075;
+	color: #fff;
+	line-height: 3em;
+}
+
+.relative { position: relative;}
+
+
+
