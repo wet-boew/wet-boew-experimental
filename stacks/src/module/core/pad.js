@@ -15,7 +15,7 @@ define( function() {
             return text ;
           }
           let max = ( targetLength - text.length ) / padString.length ;
-          for ( var i = 0 ;i < max ;i++ ) {
+          for ( let i = 0 ;i < max ;i++ ) {
             text = padString + text ;
           }
           return text ;
@@ -28,8 +28,8 @@ define( function() {
 		if ( !padString || text.length >= targetLength ) {
             return text ;
           }
-          var max = ( targetLength - text.length ) / padString.length ;
-          for ( var i = 0 ;i < max ;i++ ) {
+          let max = ( targetLength - text.length ) / padString.length ;
+          for ( let i = 0 ;i < max ;i++ ) {
             text += padString ;
           }
 

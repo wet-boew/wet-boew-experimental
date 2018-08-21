@@ -13,7 +13,7 @@ define( function() {
 
 		if ( $elm.hasAttribute( "data-wb5-selector" ) )
 		{
-			var selector = $elm.getAttribute( "data-wb5-selector" ).split("@");
+			let selector = $elm.getAttribute( "data-wb5-selector" ).split("@");
 			command[index]["selector"] = ( typeof selector[index] !== 'undefined' ) ? selector[index] : false;
 		}
 
@@ -31,7 +31,7 @@ define( function() {
 
 		if ( $elm.hasAttribute( "data-wb5-options" ) )
 		{
-			var options = $elm.getAttribute( "data-wb5-options" ).split("@");
+			let options = $elm.getAttribute( "data-wb5-options" ).split("@");
 			command[index]["options"] = ( typeof options[index] !== 'undefined' ) ? JSON.parse( options[index] ) : false;
 		}
 
@@ -56,7 +56,7 @@ define( function() {
 
 		// IE has a known issue with for looping and scope of let bound variable
 		// - workaround - use 'var' for loops
-		for (var i = 0; i < actions.length; i++) {
+		for (let i = 0; i < actions.length; i++) {
 			let action = actions[i];
 
 			if ( typeof commands[i] === 'undefined' )

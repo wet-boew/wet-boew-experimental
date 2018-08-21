@@ -34,6 +34,24 @@ define( ["module/element/store", "module/element/classes", "module/element/comma
 	}
 
 	/**
+	 * Creates a STYLE element with the specified content.
+	 * @param  {string} content  The stylesheet content.
+	 * @return {!Element}  The created STYLE element.
+	 */
+	function stylesheet( content ) {
+	    var style = document.createElement('style');
+	    var styleSheet = style.styleSheet;
+	    if (styleSheet) {
+	        styleSheet.cssText = content;
+	    }
+	    else {
+	        style.appendChild( document.createTextNode( content ) );
+	    }
+	    style.type = 'text/css';
+	    return style;
+	}
+
+	/**
 	* Add one or more listeners to an element
 	* @public
 	* @param {Object} $elm - DOM element to add listeners to
@@ -51,9 +69,16 @@ define( ["module/element/store", "module/element/classes", "module/element/comma
     }
 
 
+	function css( css )
+	{
+		return stylesheet( css );
+	}
+
+
     return {
         inspect: wbCommand.inspect,
 		nodes: nodes,
+		css: css,
         toggle: wbClassList.toggle,
         store: store,
 		addClass: wbClassList.add,

@@ -22,13 +22,13 @@ define( [ "module/event", "module/element" ], function( EventUtil, ElementUtil )
 
 	function handle( $elm, selector, options ) {
 
-        var properties = Object.assign({ eventname: "timerpoke", speed: 3 }, options );
+        let properties = Object.assign({ eventname: "timerpoke", speed: 3 }, options );
 
         $elm = prime( $elm );
 
 		for ( let $node of ElementUtil.nodes( $elm, selector ) ) {
 
-			var tid = setInterval( function( event, node ) {
+			let tid = setInterval( function( event, node ) {
 
                 if ( ElementUtil.store( $elm, "timer.state" ) !== "off"  && !document.hidden ) {
                     node.dispatchEvent( event );

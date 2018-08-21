@@ -22,7 +22,7 @@ define( [ "module/core/pad" ], function( PadUtil ) {
 	 * @return {Date | NaN}
 	 */
 	function convert( dateValue ) {
-		var dateConstructor = dateValue.constructor ;
+		let dateConstructor = dateValue.constructor ;
 
 		switch ( dateConstructor ) {
 		case Date:
@@ -50,7 +50,7 @@ define( [ "module/core/pad" ], function( PadUtil ) {
 	 * NaN if dateValue1 or dateValue2 is an illegal date
 	 */
 	function compare( dateValue1, dateValue2 ) {
-		var convert = wb.date.convert ;
+		let convert = wb.date.convert ;
 
 		if ( isFinite( dateValue1 = convert( dateValue1 ).valueOf() ) && isFinite( dateValue2 = convert( dateValue2 ).valueOf() ) ) {
 			return ( dateValue1 > dateValue2 ) - ( dateValue1 < dateValue2 ) ;
@@ -71,7 +71,7 @@ define( [ "module/core/pad" ], function( PadUtil ) {
 	 * returns "2012-04-27 13:46"
 	 */
 	function toDateISO( dateValue, withTime ) {
-		var date = convert( dateValue ) ;
+		let date = convert( dateValue ) ;
 
 		return date.getFullYear() + "-" + PadUtil.start( date.getMonth() + 1, 2, "0" ) + "-" + PadUtil.start( date.getDate(), 2, "0" ) +
 			( withTime ? " " + PadUtil.start( date.getHours(), 2, "0" ) + ":" + PadUtil.start( date.getMinutes(), 2, "0" ) : "" ) ;
@@ -84,7 +84,7 @@ define( [ "module/core/pad" ], function( PadUtil ) {
 	 * @return {Date}
 	 */
 	function fromDateISO( dateISO ) {
-		var date = null ;
+		let date = null ;
 
 		if ( dateISO && dateISO.match( /\d{4}-\d{2}-\d{2}/ ) ) {
 			date = new Date( dateISO.substr( 0, 4 ), dateISO.substr( 5, 2 ) - 1, dateISO.substr( 8, 2 ), 0, 0, 0, 0 ) ;

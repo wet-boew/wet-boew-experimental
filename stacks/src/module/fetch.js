@@ -14,7 +14,7 @@ define( [ "module/element", "module/aria", "module/core/object", "module/event",
 
 	function handle( $elm, selector, options ) {
 
-        var properties = Object.assign({ eventname: "fetched" }, options ),
+        let properties = Object.assign({ eventname: "fetched" }, options ),
             event = EventUtil.create( properties.eventname, { detail: properties } );
 
 		for ( let $node of ElementUtil.nodes( $elm, selector ) ) {

@@ -31,7 +31,7 @@ define( [ "module/core/object", "module/element" ], function( ObjectUtil , Eleme
 		ElementUtil.addListener( $elm, "click keypress",function( event ){
 	        	if ( a11yClick( event ) )
 	        	{
-	        		for(var i = 0, length = children.length; i < length; i++){
+	        		for(let i = 0, length = children.length; i < length; i++){
 	        			console.log( children[i] );
 	        			children[i][ properties.func ]();
 	        		}

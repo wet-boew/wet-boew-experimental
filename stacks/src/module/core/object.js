@@ -17,9 +17,9 @@ define( [], function() {
 
     function extend() {
 
-        for ( var i = 1 ;i < arguments.length ;i++ ) {
+        for ( let i = 1 ;i < arguments.length ;i++ ) {
 
-            for ( var key in arguments[ i ] ) {
+            for ( let key in arguments[ i ] ) {
                 if ( arguments[ i ].hasOwnProperty( key ) ) {
                     arguments[ 0 ][ key ] = arguments[ i ][ key ] ;
                 }

@@ -9,7 +9,7 @@ define( [ "module/core/pad" ], function( Pad) {
 
     function stamp()
     {
-        var date = new Date();
+        let date = new Date();
 
         let month = Pad.start( date.getMonth() + 1, 2, "0" ),
             day = Pad.start( date.getDate(),2, "0" ),

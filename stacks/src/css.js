@@ -9,8 +9,8 @@ define( {
 	load: function( name, require, load, config ) {
 		function inject( filename ) {
 
-			let head = document.getElementsByTagName( "head" )[ 0 ];
-			let link = document.createElement( "link" );
+			var head = document.getElementsByTagName( "head" )[ 0 ];
+			var link = document.createElement( "link" );
 			link.href = ( /\.[0-9a-z]{1,5}$/.test( filename ) ) ? filename : filename + ".css";
 			link.rel = "stylesheet";
 			link.type = "text/css";

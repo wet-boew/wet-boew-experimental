@@ -86,7 +86,7 @@ define( function() {
 			$elm =  [ $elm ];
 		}
 
-		for ( var i = $elm.length - 1; i >= 0; i-- ) {
+		for ( let i = $elm.length - 1; i >= 0; i-- ) {
 			func( $elm[ i ], classname );
 		}
 	}
