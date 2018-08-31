@@ -40,5 +40,33 @@
 
 .relative { position: relative;}
 
+.open > ul{
+    display: inline !important;
+    max-height: 1000px !important;
+    min-width: 12.5em;
+    position: absolute !important;
+    text-transform: none;
+    top: auto;
+    z-index: 500;
+    background: #ccc;
+    border-bottom: 5px solid #243850;
+}
+
+.open > ul >li{
+    display:block;
+}
+
+.open > ul >li > a{
+    text-align: left !important;
+    color: #444 !important;
+    padding: 5px 10px !important;
+    text-shadow: none !important;
+}
+.open > ul > .slflnk > a{
+    background:#bbb;
+}
+.open > a > .glyphicon-chevron-down{
+    z-index: -1;
+}
 
 
