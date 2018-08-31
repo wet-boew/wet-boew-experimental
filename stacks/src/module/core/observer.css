@@ -1,0 +1,10 @@
+@keyframes nodeInserted {
+	from { opacity: 0.99; }
+	to { opacity: 1; }
+}
+
+
+[data-wb5] {
+    animation-duration: 0.001s;
+    animation-name: nodeInserted;
+}

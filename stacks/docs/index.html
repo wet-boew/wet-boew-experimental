@@ -1,0 +1,88 @@
+   <!--#set var="title" value="Demo - WET 5" -->
+   <!--#include virtual="partials/head.html" -->
+<body class="">
+	<!--#include virtual="partials/header.html" -->
+	<main role="main" property="mainContentOfPage" class="container" >
+	<h1 property="name" id="wb-cont">Content page</h1>
+
+
+     <div class="container advertisement">
+        	<section data-wb5='reveal timer'
+				data-wb5-reveal-selector=".item"
+				data-wb5-timer-options='{ "eventname": "increment" }'>
+				<header class="row">
+					<h2>Promotions</h2>
+					<p>Example of the carousel feature in WET 5</p>
+				</header>
+				<div class="canvas relative mrgn-bttm-lg row" data-wb5="state" data-wb5-selector="nav li:nth-child(2) a" data-wb5-options='{"eventname": { "stop": "play", "start": "pause" }}'>
+					<nav class="">
+	  		          <ul class="list-inline">
+	  		              <li>
+	  						  <a role="button" data-wb5="broadcast" data-wb5-broadcast-options='{"eventname":"stop decrement"}'>
+	  		                	<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	  		                	<span class="sr-only"  tabindex="0">Previous</span>
+	  						  </a>
+	  				  	  </li>
+	  		              <li >
+	  						  <a role="button" class="pause sr-only" data-wb5="broadcast" data-wb5-broadcast-options='{"eventname":"start"}'>
+	  		                	  	<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+	  		                		<span class="sr-only"  tabindex="0">Play</span>
+	  		               	  </a>
+	  						  <a role="button" class="play" data-wb5="broadcast" data-wb5-broadcast-options='{"eventname":"stop"}'>
+	  		                	  <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+	  		                	  <span class="sr-only"  tabindex="0">Pause</span>
+	  		              	  </a>
+	  					  </li>
+	  		              <li>
+	  						  <a role="button" data-wb5="broadcast" data-wb5-broadcast-options='{"eventname":"stop increment"}'>
+	  		                	  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	  		                	  <span class="sr-only" tabindex="0">Next</span>
+	  		              	  </a>
+	  				  	  </li>
+	  		          </ul>
+					</nav>
+
+		  	  		<section class="item active">
+		  	  			<h2>Lorem ipsum dolor sit.</h2>
+		  	  			<figure>
+		  	  				<img src="img/promo/1.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+		  	  				<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</figcaption>
+		  	  			</figure>
+		  	  		</section>
+
+		  	  		<section class="item">
+		  	  			<h2>Lorem ipsum dolor.</h2>
+		  	  			<figure>
+		  	  				<img src="img/promo/2.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+		  	  				<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum!</figcaption>
+		  	  			</figure>
+		  	  		</section>
+		  	  		<section class="item">
+		  	  			<h2>Lorem ipsum dolor sit.</h2>
+		  	  			<figure>
+		  	  				<img src="img/promo/3.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+		  	  				<figcaption>Lorem ipsum dolor sit amet.</figcaption>
+		  	  			</figure>
+		  	  		</section>
+		  	  		<section class="item">
+		  	  			<h2>Lorem ipsum dolor.</h2>
+		  	  			<figure>
+		  	  				<img src="img/promo/4.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+		  	  				<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing.</figcaption>
+		  	  			</figure>
+		  	  		</section>
+		  	  		<section class="item">
+		  	  			<h2>Lorem ipsum dolor sit amet, consectetur.</h2>
+		  	  			<figure>
+		  	  				<img src="img/promo/5.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+		  	  				<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, harum!</figcaption>
+		  	  			</figure>
+		  	  		</section>
+        	  	</div>
+
+            </section>
+  </div>
+<!--#include virtual="partials/footer.html" -->
+<!--#include virtual="partials/scripts.html" -->
+</body>
+</html>

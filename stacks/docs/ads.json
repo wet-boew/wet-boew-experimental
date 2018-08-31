@@ -1,0 +1,9 @@
+{
+  "ads": [
+    { "title" : "Lorem ipsum dolor sit.", "imageurl" : "https://picsum.photos/1170/347?image=0", "alt": "Lorem ipsum dolor sit amet.", "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit."},
+    { "title" : "Lorem ipsum dolor.", "imageurl" : "https://picsum.photos/1170/347?image=1", "alt": "Lorem ipsum dolor sit amet.", "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum!"},
+    { "title" : "Lorem ipsum dolor sit.", "imageurl" : "https://picsum.photos/1170/347?image=2", "alt": "Lorem ipsum dolor sit amet.", "text": "Lorem ipsum dolor sit amet."},
+    { "title" : "Lorem ipsum dolor.", "imageurl" : "https://picsum.photos/1170/347?image=3", "alt": "Lorem ipsum dolor sit amet.", "text": "Lorem ipsum dolor sit amet, consectetur adipisicing."},
+    { "title" : "Lorem ipsum dolor sit amet, consectetur.", "imageurl" : "https://picsum.photos/1170/347?image=4", "alt": "Lorem ipsum dolor sit amet.", "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, harum!"}
+  ]
+}
