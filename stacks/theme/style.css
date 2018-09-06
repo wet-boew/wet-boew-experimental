@@ -38,8 +38,6 @@
 	line-height: 3em;
 }
 
-.relative { position: relative;}
-
 .open > ul{
     display: inline !important;
     max-height: 1000px !important;
@@ -62,11 +60,14 @@
     padding: 5px 10px !important;
     text-shadow: none !important;
 }
+
+.open > ul >li > a:hover, a:focus, a:active{
+    color: #fff !important;
+}
+
 .open > ul > .slflnk > a{
     background:#bbb;
 }
 .open > a > .glyphicon-chevron-down{
     z-index: -1;
 }
-
-
