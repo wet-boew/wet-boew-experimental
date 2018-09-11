@@ -16,29 +16,34 @@ define( [ "module/core/object", "module/element", "module/event" ], function( Ob
 	function keycode( event, orientation ) {
 		
 		let code = event.charCode || event.keyCode;
+		if(code == 9){
+			return 'tab';
+		}
+		if(code == 27){
+			return 'esc';
+		}
 		if (orientation == "horizontal"){
 			if (code == 39){ //right arrow
-				return 1
+				return 'increment';
 			}
 			if (code == 37){ //left arrow
-				return -1
+				return 'decrement';
 			}
 			if (code == 40){ //down arrow
-				return 2
+				return 'enter';
 			}
 		}
 		else{
 			if (code == 40){ //down arrow
-				return 1
+				return 'increment';
 			}
 			if (code == 38){ //up arrow
-				return -1
+				return 'decrement';
 			}
 			if (code == 39){ //right arrow
-				return 2
+				return 'enter';
 			}
 		}
-		if(code == 9) return code;
 		return false;
 	}
 	
@@ -56,49 +61,84 @@ define( [ "module/core/object", "module/element", "module/event" ], function( Ob
 	
 	function handle( $elm, selector, options ) {
 		
-		let properties = Object.assign({ eventname: "keypress", classname: "open", orientation: "horizontal" }, options ),
+		let properties = Object.assign({ eventname: "keypress", classes: "open active" }, options ),
 		children = ElementUtil.nodes( $elm, selector );
-		
+		//properties.classes += "active"
+		listen($elm, properties, "horizontal")
+		for( let child of children){
+			listen(child, properties)
+		}
+	}
+
+	function listen($elm, properties, orientation="vertical"){
+
+		//console.log("attaching listener on", $elm.localName, $elm.classList)
+		let children = $elm.children;
+
 		ElementUtil.addListener( $elm, properties.eventname, function( event ){
-			let key = keycode(event, properties.orientation);
+			let advance,
+			current = find( children, "active" ),
+			total = children.length,
+			next = 0,
+			key = keycode(event, orientation);
+			
+
+			//console.log("Event logged: ", $elm)
+			//console.log("Key Pressed: ", event.keyCode, ", ", key)
+
+
 			if (!key){
 				return;
 			}
-			/*else if (key == 9){
+			if (key == 'tab'){
 				for (let node of children){
-					ElementUtil.removeClass( node, properties.classname );
+					ElementUtil.removeClass( node, properties.classes );
 				}
-			}*/
-			
-			let advance = key
-			current = find( children, properties.classname ),
-			total = children.length,
-			next = 0;
-			
-			if (key == -1 || key == 1){
-				if ( current + advance < total )
-				{
-					next = current + advance;
-					next = ( next < 0 ) ? total + next : next;
-				}
-				
-				if ( current + advance > total )
-				{
-					next = current + advance;
-					next = ( next > total ) ? total - next : next;
-				}
-				
-				children[next].firstChild.focus()
 			}
-			//else if (key == 2){
-			//	let c = children[current].querySelector(".sm > li > a");
-			//	ElementUtil.addClass(c, "active");
-			//	c.focus()
-			//}
+			else if (key == 'esc'){
+				ElementUtil.removeClass(children[current], "open")
+				children[current].focus();
+			}
+			else {
+				event.preventDefault()
+				if (key == 'enter'){
+					let c = children[current].querySelector("ul");
+					if (c){
+						c = c.querySelector("li > a");
+						//console.log(document.activeElement)
+						c.focus()
+						ElementUtil.addClass(children[current], properties.classes);
+						c.focus()
+						//console.log(document.activeElement)
+						event.stopPropagation()
+					}
+				}
+				else if (key == 'increment' || key == 'decrement'){
+					//console.log("Moving focus and adding class",properties.classes)
+					advance = (key == 'increment') ? 1 : -1;
+					if ( current + advance < total )
+					{
+						next = current + advance;
+						next = ( next < 0 ) ? total + next : next;
+					}
+					
+					if ( current + advance > total )
+					{
+						next = current + advance;
+						next = ( next > total ) ? total - next : next;
+					}
+					if(current > -1){
+						ElementUtil.removeClass(children[current], properties.classes)
+					}
+					ElementUtil.addClass(children[next], properties.classes)
+					children[next].firstChild.focus()
+					event.stopPropagation()
+					
+				}
+			}
 		});
-		
 	}
-	
+
 	return {
 		handle: handle
 	};

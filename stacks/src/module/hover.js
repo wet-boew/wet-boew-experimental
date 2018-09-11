@@ -19,7 +19,7 @@ define( [ "module/element"], function( ElementUtil ) {
     function listen( $elm , properties, siblings ) {
         let focused = false;
         ElementUtil.addListener( $elm, properties.eventname, function( e ) {
-            e.stopPropagation()
+            //console.log("event logged:", e.type, $elm)
             let timer;
             switch(e.type){
                 case "mouseenter":
@@ -42,14 +42,16 @@ define( [ "module/element"], function( ElementUtil ) {
                 break;
                 case "focusin":
                 focused = true;
-                //for (let node of siblings){
-                //        ElementUtil.removeClass( node, properties.classname );
-                //}
                 ElementUtil.addClass( $elm, properties.classname );
                 break;
                 case "focusout":
                 focused = false;
-                ElementUtil.removeClass( $elm, properties.classname );
+                timer = setInterval( function() {
+                    if( !focused ){
+                        ElementUtil.removeClass( $elm, properties.classname );
+                    }
+                    clearInterval( timer );
+                },1); 
                 break;
                 
             }
@@ -67,7 +69,7 @@ define( [ "module/element"], function( ElementUtil ) {
     
     function handle( $elm, selector, options ) {
         
-        let properties = Object.assign({ eventname: "mouseenter mouseleave focusin focusout", classname: "open" }, options ),
+        let properties = Object.assign({ eventname: "mouseenter mouseleave focusin focusout", classname: "open active" }, options ),
         nodes = ElementUtil.nodes( $elm, selector );
         
         for ( let node of nodes ) {
