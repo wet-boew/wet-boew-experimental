@@ -7,7 +7,7 @@
 
 define( [ "module/element"], function( ElementUtil ) {
     "use strict";
-    
+
     /**
     * Listens for focus/hover events
     * @private
@@ -15,13 +15,11 @@ define( [ "module/element"], function( ElementUtil ) {
     * @param {Object} properties - contains wb5 module configuration
     * @returns void
     */
-    
     function listen( $elm , properties, siblings ) {
         let focused = false;
-        ElementUtil.addListener( $elm, properties.eventname, function( e ) {
-            //console.log("event logged:", e.type, $elm)
+        ElementUtil.addListener( $elm, properties.eventname, function( event ) {
             let timer;
-            switch(e.type){
+            switch( event.type ){
                 case "mouseenter":
                 focused = true;
                 timer = setInterval( function() {
@@ -53,11 +51,10 @@ define( [ "module/element"], function( ElementUtil ) {
                     clearInterval( timer );
                 },1); 
                 break;
-                
             }
         });
     }
-    
+
     /**
     * the main function body
     * @public
@@ -66,18 +63,14 @@ define( [ "module/element"], function( ElementUtil ) {
     * @param {Object} options - for the element/node
     * @returns void
     */
-    
     function handle( $elm, selector, options ) {
-        
         let properties = Object.assign({ eventname: "mouseenter mouseleave focusin focusout", classname: "open active" }, options ),
         nodes = ElementUtil.nodes( $elm, selector );
-        
         for ( let node of nodes ) {
             listen( node, properties, nodes );
         }
-        
     }
-    
+
     return {
         handle: handle
     };

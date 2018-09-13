@@ -38,7 +38,7 @@
 	line-height: 3em;
 }
 
-.open > ul{
+.list-inline > .open > ul{
     display: inline !important;
     max-height: 1000px !important;
     min-width: 12.5em;
@@ -48,10 +48,33 @@
     z-index: 500;
     background: #ccc;
     border-bottom: 5px solid #243850;
+    overflow: visible;
 }
 
-.open > ul >li{
+.list-inline > .open > ul >li{
     display:block;
+}
+
+.sm > .open > ul{
+    overflow: visible;
+    display: block !important;
+    max-height: 1000px !important;
+    min-width: 12.5em;
+    position: absolute !important;
+    text-transform: none;
+    margin-top: -33px;
+    left: 100%;
+    z-index: 100;
+    background: #ccc;
+    border-bottom: 5px solid #243850;
+}
+
+.sm >li{
+    display:block;
+}
+
+.sm > li > ul{
+    display: none !important;
 }
 
 .open > ul >li > a{
@@ -61,13 +84,18 @@
     text-shadow: none !important;
 }
 
-.open > ul >li > a:hover, a:focus, a:active{
+.open > ul > li > a:hover, a:focus, a:active{
     color: #fff !important;
 }
-
+.open > ul > .active > a{
+    color: #fff !important;
+}
 .open > ul > .slflnk > a{
     background:#bbb;
 }
 .open > a > .glyphicon-chevron-down{
+    z-index: -1;
+}
+.open > a > .glyphicon-chevron-right{
     z-index: -1;
 }
