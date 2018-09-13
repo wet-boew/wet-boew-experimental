@@ -16,7 +16,7 @@ define( [ "module/element" ], function( ElementUtil ) {
 
 		let code = event.charCode || event.keyCode;
 		if ( code == 9 ) {
-			return 'tab';;
+			return 'tab';
 		}
 		if ( code == 13 ) {
 			return 'enter';
