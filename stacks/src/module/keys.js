@@ -81,7 +81,7 @@ define( [ "module/element" ], function( ElementUtil ) {
 	*/
 	function handle( $elm, selector, options ) {
 
-		let properties = Object.assign({ eventname: "keypress", classes: "open active", orientation: "horizontal" }, options ),
+		let properties = Object.assign({ eventname: "keypress", classes: "active", orientation: "horizontal" }, options ),
 		children = ElementUtil.nodes( $elm, selector );
 
 		//Add class and event listeners

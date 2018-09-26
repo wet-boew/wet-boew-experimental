@@ -38,7 +38,7 @@
 	line-height: 3em;
 }
 
-.list-inline > .open > ul{
+.menu > .open > ul{
     display: inline !important;
     max-height: 1000px !important;
     min-width: 12.5em;
@@ -51,7 +51,7 @@
     overflow: visible;
 }
 
-.list-inline > .open > ul >li{
+.menu > .open > ul >li{
     display:block;
 }
 
@@ -84,10 +84,7 @@
     text-shadow: none !important;
 }
 
-.open > ul > li > a:hover, a:focus, a:active{
-    color: #fff !important;
-}
-.open > ul > .active > a{
+.open > ul > li > a:hover, .open > ul > li > a:focus, .open > ul > li > a:active{
     color: #fff !important;
 }
 .open > ul > .slflnk > a{
@@ -98,4 +95,41 @@
 }
 .open > a > .glyphicon-chevron-right{
     z-index: -1;
+}
+
+li[class*=open] > a{
+    background: rgb(47, 48, 66) !important;
+    color: #fff !important;
+}
+
+
+.focus-within{
+    outline: rgb(41, 207, 41) dotted 3px !important;
+}
+
+*:focus{
+    outline: red dotted 3px !important;
+}
+
+.wb5Test{
+    outline: blue dotted 3px !important;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.calender td {
+    vertical-align: top;
+    height: 120px;
+    width: 100px;
 }
