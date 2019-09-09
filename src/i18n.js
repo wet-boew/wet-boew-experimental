@@ -43,7 +43,7 @@
     //nlsRegExp.exec('foo/bar/baz/nls/foo') gives:
     //['foo/bar/baz/nls/foo', 'foo/bar/baz/nls/', '/', '/', 'foo', '']
     //so, if match[5] is blank, it means this is the top bundle definition.
-    var nlsRegExp = /(^.*(^|\/)i18n(\/|$))([^\/]*)\/?([^\/]*)/;
+    var nlsRegExp = /(^.*(^|\/)nls(\/|$))([^\/]*)\/?([^\/]*)/;
 
     //Helper function to avoid repeating code. Lots of arguments in the
     //desire to stay functional and support RequireJS contexts without having
@@ -96,10 +96,9 @@
             load: function (name, req, onLoad, config) {
                 config = config || {};
 
-                //if (config.locale) {
-                    //masterConfig.locale = config.locale;
-                    masterConfig.locale = ( document.documentElement.lang ) ? document.documentElement.lang : "en" ;
-                //}
+                if (config.locale) {
+                    masterConfig.locale = config.locale;
+                }
 
                 var masterName,
                     match = nlsRegExp.exec(name),
