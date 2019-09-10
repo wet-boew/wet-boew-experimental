@@ -1,4 +1,7 @@
 {
     "version": "5.0",
-    "licence": "MIT"
+    "licence": "MIT",
+    "polyfills": [
+        "datepicker"
+    ]
 }
