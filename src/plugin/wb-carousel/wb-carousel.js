@@ -6,14 +6,37 @@
  */
 
 define( [ ], function( ) {
-    "use strict";
+	"use strict";
+	
+	class Carousel extends HTMLElement {
 
-	function init( node ) {
-        console.log( "I AM IN THE CAROUSEL");
-        node.innerHTML = "HELL0!"
+		constructor() {
+			// Always call super first in constructor
+			super();
+
+			console.log( "[ i18n ] -> " + this.i18n.greeting );
+
+		}
+
+
+		connectedCallback() {
+			console.log('Custom element added to page.');
+
+		}
+
+		disconnectedCallback() {
+			console.log('Custom element removed from page.');
+		}
+
+		adoptedCallback() {
+			console.log('Custom element moved to new page.');
+		}
+
+		attributeChangedCallback(name, oldValue, newValue) {
+			console.log('Custom element attributes changed.');
+		}
 	}
 
-	return {
-		init: init
-	};
-} );
+	customElements.define("wb-carousel", Carousel);
+
+});
