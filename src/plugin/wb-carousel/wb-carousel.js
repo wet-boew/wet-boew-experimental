@@ -8,12 +8,12 @@
 define( [ ], function( ) {
     "use strict";
 
-	function handle( node ) {
+	function init( node ) {
         console.log( "I AM IN THE CAROUSEL");
         node.innerHTML = "HELL0!"
 	}
 
 	return {
-		handle: handle
+		init: init
 	};
 } );
