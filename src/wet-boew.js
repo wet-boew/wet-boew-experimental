@@ -26,10 +26,11 @@ require(['i18n!nls/dctnry', 'lib/dom/stylesheet'], function( i8n, Stylesheet  ) 
         ) {
 
             let node = event.target,
-                tag =  "plugin/" + node.tagName.toLowerCase() + "/init";
+                tagName = node.tagName.toLowerCase(),
+                tag =  "plugin/" + tagName + "/" + tagName;
                
 					require( [ tag ], function( element, i8n ) {
-						element.handle( node ) ;
+						element.init( node ) ;
 					}) ;
 		    }
 
