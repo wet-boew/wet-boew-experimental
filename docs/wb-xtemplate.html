@@ -9,9 +9,10 @@
     
 </head>
 <body>
-    <h1>wb-xtemplate - Web Experience Toolkit - version 5 (Wet5)</h1>
+    <h1><code>&lt;wb-xtemplate&gt;</code> - Web Experience Toolkit - version 5 (Wet5)</h1>
     <p>It extract the DOM to a JSO. Take a look at the browser console and to the DOM property wbdata of this custom element.</p>
-    <wb-xtemplate v="5"  selector='{
+    <wb-xtemplate v="5" 
+        selector='{
             "/data1": ".data1",
             "/data2": ".data2",
             "/data3": ".data3",
@@ -26,9 +27,21 @@
             "/data5/data5b": ".datab",
             "/data6/data6a": ".datac"
         }'
-         
-        x-selector=',
-            "data6/data6a": ".datac"'
+        selector-dot-notation='{
+            "data1": ".data1",
+            "data2": ".data2",
+            "data3": ".data3",
+            "data4.": ".data4 li",
+            "data4.data4a": ".dataa",
+            "data4.data4b": ".datab",
+            "data4.data4c": ".datac",
+            "data4.subobj.data4b": ".datab",
+            "data4.subobj.data4c": ".datac",
+            "data5": "#data5",
+            "data5.data5a": ".dataa",
+            "data5.data5b": ".datab",
+            "data6.data6a": ".datac"
+        }'
         >
         <h2>My data</p>
         <p class="data1">data1</p>
@@ -45,9 +58,29 @@
             <p class="datac">data5c</p>
         </div>
     </wb-xtemplate>
-    <!-- 
-        Scripts
-    -->
+
+    <h2>Attribute <code>selector</code></h2>
+
+    <dl>
+        <dt>Value</dt>
+        <dd>JSON object</dd>
+
+        <dt>JSON object</dt>
+        <dd>Key, value pair</dd>
+
+        <dt>key</dt>
+        <dd>JSON Pointer RFC6901 (must start with a "/" character)</dd>
+        <dd>Dot notation, similar as JSON pointer, but "." is replaced by "/" and key is prefixed with "/"</dd>
+
+        <dt>value</dt>
+        <dd>Temporary default -> DOM object</dd>
+        <dd>TODO: Default -> TextContent</dd>
+        <dd>TODO: Prefix with "@" follow by attribute name  -> Attribute value</dd>
+        <dd>TODO: Prefix with "toggle@" follow by attribute name -> Toogle the attribute, example toggle "hidden" attribute to show/hide the DOM node</dd>
+        <dd>TODO: Prefix with "token@" follow by attribute name -> The binded value would be an array of string. This is to support attribute with a DOMTokenList value type. Like the class attribute</dd>
+        <dd>TODO: Prefix with "json@" follow by the attribute name -> The attribute value are going to be parsed into JSON and used as value</dd>
+    </dl>
+
     <script src="../src/vendor/requirejs/2.3.6/require.js" data-main="../src/wet-boew.js"></script>
 </body>
 </html>
