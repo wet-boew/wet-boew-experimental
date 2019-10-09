@@ -59,6 +59,9 @@ define( [ "../../vendor/jsonpointer/jsonpointer" ], function( jsonPointer ) {
 		// Get plugin properties
 		var dataExtracted = extractDataStructure( elm, elm.getAttribute( "selector" ) );
 
+		// Make it available from outside
+		elm.wbData = dataExtracted;
+
 		console.log( dataExtracted );
 	}
 
@@ -113,7 +116,7 @@ Transit object
 [
 	[	
 		{
-			"key":"/data1",
+			"pointer":"/data1",
 			"value":".data1",
 			"namespace":"/",
 			"subspace":"",
@@ -122,7 +125,7 @@ Transit object
 			"isList":false
 		},
 		{
-			"key":"/data2",
+			"pointer":"/data2",
 			"value":".data2",
 			"namespace":"/",
 			"subspace":"",
@@ -131,8 +134,8 @@ Transit object
 			"isList":false
 		},
 		{
-			"key":"/data3",
-			"value":".data3","namespace":"/","subspace":"","prop":"/data3","path":"/data3","isList":false},{"key":"/data4/","value":".data4 li","namespace":"/","subspace":"","prop":"/data4","path":"/data4","isList":true},{"key":"/data5","value":"#data5","namespace":"/","subspace":"","prop":"/data5","path":"/data5","isList":false}],[{"key":"/data4/data4a","value":".dataa","namespace":"/data4/","subspace":"","prop":"/data4a","path":"/data4/data4a","isList":false,"subspaceMod":true,"hasProcessed":true},{"key":"/data4/data4b","value":".datab","namespace":"/data4/","subspace":"","prop":"/data4b","path":"/data4/data4b","isList":false,"subspaceMod":true,"hasProcessed":true},{"key":"/data4/data4c","value":".datac","namespace":"/data4/","subspace":"","prop":"/data4c","path":"/data4/data4c","isList":false,"subspaceMod":true,"hasProcessed":true},{"key":"/data5/data5a","value":".dataa","namespace":"/data5/","subspace":"data5/","prop":"/data5/data5a","path":"/data5/data5a","isList":false,"propSubspaceSet":true},{"key":"/data5/data5b","value":".datab","namespace":"/data5/","subspace":"data5/","prop":"/data5/data5b","path":"/data5/data5b","isList":false,"propSubspaceSet":true},{"key":"/data6/data6a","value":".datac","namespace":"/data6/","subspace":"data6/","prop":"/data6/data6a","path":"/data6/data6a","isList":false,"propSubspaceSet":true}],[{"key":"/data4/subobj/data4b","value":".datab","namespace":"/data4/subobj/","subspace":"subobj/","prop":"/subobj/data4b","path":"/data4/subobj/data4b","isList":false,"subspaceMod":true,"propSubspaceSet":true,"hasProcessed":true},{"key":"/data4/subobj/data4c","value":".datac","namespace":"/data4/subobj/","subspace":"subobj/","prop":"/subobj/data4c","path":"/data4/subobj/data4c","isList":false,"subspaceMod":true,"propSubspaceSet":true,"hasProcessed":true}]]
+			"pointer":"/data3",
+			"value":".data3","namespace":"/","subspace":"","prop":"/data3","path":"/data3","isList":false},{"pointer":"/data4/","value":".data4 li","namespace":"/","subspace":"","prop":"/data4","path":"/data4","isList":true},{"pointer":"/data5","value":"#data5","namespace":"/","subspace":"","prop":"/data5","path":"/data5","isList":false}],[{"pointer":"/data4/data4a","value":".dataa","namespace":"/data4/","subspace":"","prop":"/data4a","path":"/data4/data4a","isList":false,"subspaceMod":true,"hasProcessed":true},{"pointer":"/data4/data4b","value":".datab","namespace":"/data4/","subspace":"","prop":"/data4b","path":"/data4/data4b","isList":false,"subspaceMod":true,"hasProcessed":true},{"pointer":"/data4/data4c","value":".datac","namespace":"/data4/","subspace":"","prop":"/data4c","path":"/data4/data4c","isList":false,"subspaceMod":true,"hasProcessed":true},{"pointer":"/data5/data5a","value":".dataa","namespace":"/data5/","subspace":"data5/","prop":"/data5/data5a","path":"/data5/data5a","isList":false,"propSubspaceSet":true},{"pointer":"/data5/data5b","value":".datab","namespace":"/data5/","subspace":"data5/","prop":"/data5/data5b","path":"/data5/data5b","isList":false,"propSubspaceSet":true},{"pointer":"/data6/data6a","value":".datac","namespace":"/data6/","subspace":"data6/","prop":"/data6/data6a","path":"/data6/data6a","isList":false,"propSubspaceSet":true}],[{"pointer":"/data4/subobj/data4b","value":".datab","namespace":"/data4/subobj/","subspace":"subobj/","prop":"/subobj/data4b","path":"/data4/subobj/data4b","isList":false,"subspaceMod":true,"propSubspaceSet":true,"hasProcessed":true},{"pointer":"/data4/subobj/data4c","value":".datac","namespace":"/data4/subobj/","subspace":"subobj/","prop":"/subobj/data4c","path":"/data4/subobj/data4c","isList":false,"subspaceMod":true,"propSubspaceSet":true,"hasProcessed":true}]]
 
 Final Object (with a reference to a DOM Node)
 
@@ -197,11 +200,18 @@ Final Object (with a reference to a DOM Node)
 
 		for ( const [ key, value ] of Object.entries( selectors ) ) {
 
+			// If the first character is not a "/", then assume the user use a dot notation
+			let pointer = key;
 
-			// Parse the key
-			let isList = key.lastIndexOf( "/" ) === key.length - 1,
-				deep = ( key.match( /\//g ) || [] ).length - (isList ? 1 : 0) - 1,
-				path = isList ? key.slice( 0, -1 ) : key,
+			if( pointer.substring(0, 1) !== "/" ) {
+				pointer = "/" + pointer.replace( /\./g, '/' );
+			}
+
+
+			// Parse the pointer
+			let isList = pointer.lastIndexOf( "/" ) === pointer.length - 1,
+				deep = ( pointer.match( /\//g ) || [] ).length - (isList ? 1 : 0) - 1,
+				path = isList ? pointer.slice( 0, -1 ) : pointer,
 				propParsed = path.match( /(^(.+?\/)+)/ ), 
 				namespace = propParsed && propParsed[ 0 ] || "/",
 				prop = "/" + path.substring( namespace.length );
@@ -212,7 +222,7 @@ Final Object (with a reference to a DOM Node)
 			preProcessedKey[ deep ] = preProcessedKey[ deep ] || [ ];
 
 			let transitObjNew = {
-				key: key,
+				pointer: pointer,
 				value: value,
 				namespace: namespace,
 				subspace: namespace.substring( 1 ),
@@ -342,9 +352,9 @@ Final Object (with a reference to a DOM Node)
 			let keyToRemove = [];
 			for ( const [ key, value ] of Object.entries( namespaceData ) ) {
 
-				if ( key.indexOf( transitObj.key ) !== -1 && key.length > transitObj.key.length ) {
+				if ( key.indexOf( transitObj.pointer ) !== -1 && key.length > transitObj.pointer.length ) {
 
-					namespaceData[ transitObj.key ] = namespaceData[ transitObj.key ].concat( value );
+					namespaceData[ transitObj.pointer ] = namespaceData[ transitObj.pointer ].concat( value );
 					keyToRemove.push( key );
 				}
 			}
@@ -353,7 +363,7 @@ Final Object (with a reference to a DOM Node)
 			for( let i = 0; i !== elm.length; i += 1 ) {
 
 				const currentElm = elm[ i ];
-				const objToSave = extractSubObj( currentElm, namespaceData[ transitObj.key ] );
+				const objToSave = extractSubObj( currentElm, namespaceData[ transitObj.pointer ] );
 
 				if( lastNamespaceElement ) {
 					delete namespaceElement[ lastNamespaceElement ]
@@ -365,7 +375,7 @@ Final Object (with a reference to a DOM Node)
 
 
 			// Remove the subSet from being processed again
-			let listOfData = namespaceData[ transitObj.key ];
+			let listOfData = namespaceData[ transitObj.pointer ];
 			for( let i = 0; i !== listOfData.length; i += 1 ) {
 				listOfData[ i ].hasProcessed = true;
 			}
@@ -373,13 +383,52 @@ Final Object (with a reference to a DOM Node)
 
 		} else {
 
-			const objToSave = extractSubObj( elm, namespaceData[ transitObj.key ] );
+			const objToSave = extractSubObj( elm, namespaceData[ transitObj.pointer ] );
 			jsonPointer.set( finalObj, transitObj.path, objToSave );
 		}
 
 	}
 
 
+	// Make the data object reactive with the DOM object
+	let _signals = {};
+
+  function notify(signal) {
+    if (!signals[signal] || signals[signal].length < 1) return;
+
+    signals[signal].forEach(function (signalHandler) {
+      return signalHandler();
+    });
+  }
+  
+  function observe(property, signalHandler) {
+
+    if (!signals[property]) signals[property] = [];
+
+    signals[property].push(signalHandler);
+  }
+
+	function observeData(obj) {
+	    for (var key in obj) {
+	      if (obj.hasOwnProperty(key)) {
+	        makeReactive(obj, key);
+	      }
+	    }
+	  }
+
+  function makeReactive(obj, key) {
+    var val = obj[key];
+
+    Object.defineProperty(obj, key, {
+      get: function get() {
+        return val;
+      },
+      set: function set(newVal) {
+        val = newVal;
+        notify( key );
+      }
+    });
+  }
 	return {
 		init: init
 	};
