@@ -1,0 +1,605 @@
+	<!--#include virtual="partials/head.html" -->
+	<body class="">
+		<!--#include virtual="partials/header.html" -->
+		<main role="main" property="mainContentOfPage" class="container" >
+			<h1 property="name" id="wb-cont">Keyboard Navigation</h1>
+			<p>The Keyboard Navigation module permits traversel through a set of elements using the arrow keys.</p>
+			<table class="wb-table">
+				<thead>
+					<td>Option</td>
+					<td>Description</td>
+					<td>Possible Values</td>
+				</thead>
+				<tr>
+					<td>Orientation</td>
+					<td>Layout of the elements. Determines which keys are used to traverse in certain directions.</td>
+					<td>Horizontal, Veritcal, Grid</td>
+				</tr>
+				<tr>
+					<td>Classes</td>
+					<td>These classes will be added to the selected element.</td>
+					<td>string</td>
+				</tr>
+				<tr>
+					<td>KeepClassOnBlur</td>
+					<td>When set to true, the classes will remain on the last selected element after focus has moved.</td>
+					<td>false (default), true</td>
+				</tr>
+				<tr>
+					<td>Width</td>
+					<td>For use with grids. The width of a single row.</td>
+					<td>int</td>
+				</tr>
+			</table>
+			<h2>Working Examples</h2>
+			<h3>Menu Bar</h3>
+
+
+
+
+
+
+
+
+			<nav role="navigation" id="wb-sm" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+					<div class="pnl-strt container nvbar">
+						<h2 class="wb-inv">Topics menu</h2>
+						<div class="row">
+							<ul tabindex='0' id="menu-1" data-wb5="nav" data-wb5-nav-options='{"classes": "open"}' data-wb5-nav-selector="#menu-1 > li" class="list-inline menu" role="menubar">
+								<li><a href="#jobs" class="item"  tabindex='-1'>Jobs<span class="expicon glyphicon glyphicon-chevron-down"></span></a>
+									<ul data-wb5="nav" data-wb5-nav-options='{"classes": "active", "orientation":"vertical"}' data-wb5-nav-selector="li" class="sm list-unstyled" id="jobs" role="menu">
+										<li><a tabindex='-1' href="http://www.jobbank.gc.ca/home-eng.do?lang=eng">Job Bank</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/jobs/opportunities.html">Find a job</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/jobs/training.html">Training</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/business-management">Hire and manage employees</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/business/start.html">Starting a business</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/jobs/workplace.html">Workplace standards</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/finance/pensions.html">Pensions and retirement</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/ei">Employment insurance</a></li>
+										<li class="slflnk"><a tabindex='-1' href="https://www.canada.ca/en/services/jobs.html">Jobs - More</a></li>
+									</ul>
+								</li>
+								<li><a href="#immigration" class="item" tabindex='-1'>Immigration<span class="expicon glyphicon glyphicon-chevron-down"></span></a>
+									<ul class="sm list-unstyled" id="immigration" role="menu">
+										<li><a tabindex='-1' href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application.html">My application</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada.html">Immigrate</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada.html">Visit</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada.html">Work</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada.html">Study</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-citizenship.html">Citizenship</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/immigration-refugees-citizenship/services/new-immigrants.html">New immigrants</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/immigration-refugees-citizenship/services/canadians.html">Canadians</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/immigration-refugees-citizenship/services/refugees.html">Refugees and asylum</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/immigration-citizenship/enforcement-violations.html">Enforcement and violations</a></li>
+										<li class="slflnk"><a tabindex='-1' href="https://www.canada.ca/en/services/immigration-citizenship.html">Immigration - More</a></li>
+									</ul>
+								</li>
+								<li><a href="#travel" class="item" tabindex='-1'>Travel<span class="expicon glyphicon glyphicon-chevron-down"></span></a>
+									<ul class="sm list-unstyled" id="travel" role="menu">
+										<li><a tabindex='-1' href="https://travel.gc.ca/travelling/advisories">Travel Advice and Advisories</a></li>
+										<li><a tabindex='-1' href="https://travel.gc.ca/canadian-tourism">Canadian attractions, events and experiences</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports.html">Canadian passports</a></li>
+										<li><a tabindex='-1' href="https://travel.gc.ca/travelling">Travelling abroad</a></li>
+										<li><a tabindex='-1' href="https://travel.gc.ca/air">Air travel</a></li>
+										<li><a tabindex='-1' href="http://travel.gc.ca/returning?_ga=2.233679902.1228858941.1537899038-1581170273.1529676821">Returning to Canada</a></li>
+										<li><a tabindex='-1' href="https://travel.gc.ca/assistance">Assistance abroad</a></li>
+										<li><a tabindex='-1' href="https://travel.gc.ca/stay-connected">Stay connected</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/visit">Visit Canada</a></li>
+										<li class="slflnk"><a tabindex='-1' href="https://travel.gc.ca/">Travel - More</a></li>
+									</ul>
+								</li>
+								<li><a href="#business" class="item" tabindex='-1'>Business<span class="expicon glyphicon glyphicon-chevron-down"></span></a>
+									<ul class="sm list-unstyled" id="business" role="menu">
+										<li><a tabindex='-1' href="https://www.canada.ca/start-business">Starting a business</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/business/grants.html">Grants and financing</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/business/taxes.html">Business taxes</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/business/doing-business.html">Doing business with government</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/business/trade.html">International trade and investment</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/science/innovation.html">Research and development (R&amp;D) and innovation</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/business/ip.html">Intellectual property and copyright</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/business/permits.html">Permits, licences and regulations</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/business/research.html">Research and business intelligence</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/business/hire.html">Hiring and managing employees</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/business/maintaingrowimprovebusiness.html">Maintain, grow and improve your business</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/business/protecting.html">Protect your business</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/business/bankruptcy.html">Bankruptcy for business</a></li>
+										<li class="slflnk"><a tabindex='-1' href="https://www.canada.ca/en/services/business.html">Business - More</a></li>
+									</ul>
+								</li>
+								<li><a href="#benefits" class="item" tabindex='-1'>Benefits<span class="expicon glyphicon glyphicon-chevron-down"></span></a>
+									<ul class="sm list-unstyled" id="benefits" role="menu">
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/benefits/ei.html">Employment Insurance</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/benefits/family.html">Family benefits</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/benefits/publicpensions.html">Public pensions</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/benefits/education.html">Education and training</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/benefits/housing.html">Housing benefits</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/benefits/disability.html">Disability benefits</a></li>
+										<li><a tabindex='-1' href="http://www.canadabenefits.gc.ca">Benefits finder</a></li>
+										<li class="slflnk"><a tabindex='-1' href="https://www.canada.ca/en/services/benefits.html">Benefits - More</a></li>
+									</ul>
+								</li>
+								<li><a href="#health" class="item" tabindex='-1'>Health<span class="expicon glyphicon glyphicon-chevron-down"></span></a>
+									<ul class="sm list-unstyled" id="health" role="menu">
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/health/health-risks-safety.html">Health risks and safety</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/health/food-nutrition.html">Food and nutrition</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/health/drug-health-products.html">Drugs and health products</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/health/product-safety.html">Product safety</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/health/diseases-conditions.html">Diseases and conditions</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/health/healthy-living.html">Healthy living</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/health/aboriginal-health.html">Indigenous health</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/health/health-system-services.html">Health system and services</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/health/science-research-data.html">Science, research and data</a></li>
+										<li class="slflnk"><a tabindex='-1' href="https://www.canada.ca/en/services/health.html">Health - More</a></li>
+									</ul>
+								</li>
+								<li><a href="#taxes" class="item" tabindex='-1'>Taxes<span class="expicon glyphicon glyphicon-chevron-down"></span></a>
+									<ul class="sm list-unstyled" id="taxes" role="menu">
+										<li><a href="https://www.canada.ca/en/services/taxes/income-tax.html">Income Tax</a></li>
+										<li><a href="https://www.canada.ca/en/services/taxes/gsthst.html">GST/HST</a></li>
+										<li><a href="https://www.canada.ca/en/services/taxes/payroll.html">Payroll</a></li>
+										<li><a href="https://www.canada.ca/en/services/taxes/business-number.html">Business number</a></li>
+										<li><a href="https://www.canada.ca/en/services/taxes/savings-and-pension-plans.html">Savings and pension plans</a></li>
+										<li><a href="https://www.canada.ca/en/services/taxes/child-and-family-benefits.html">Child and family benefits</a></li>
+										<li><a href="https://www.canada.ca/en/services/taxes/excise-taxes-duties-and-levies.html">Excise taxes, duties, and levies</a></li>
+										<li><a href="https://www.canada.ca/en/services/taxes/charities.html">Charities and giving</a></li>
+										<li class="slflnk"><a href="https://www.canada.ca/en/services/taxes.html">Taxes - More</a></li>
+									</ul>
+								</li>
+								<li><a href="#more-services" class="item" tabindex='-1'>More services<span class="expicon glyphicon glyphicon-chevron-down"></span></a>
+									<ul class="sm list-unstyled" id="more-services" role="menu">
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/environment.html">Environment and natural resources</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/defence.html">National security and defence</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/culture.html">Culture, history and sport</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/policing.html">Policing, justice and emergencies</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/transport.html">Transport and infrastructure</a></li>
+										<li><a tabindex='-1' href="http://international.gc.ca/world-monde/index.aspx?lang=eng">Canada and the world</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/finance.html">Money and finances</a></li>
+										<li><a tabindex='-1' href="https://www.canada.ca/en/services/science.html">Science and innovation</a></li>
+										<li class="slflnk"><a tabindex='-1' href="https://www.canada.ca/en/services.html">All services</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<h3>Secondary Menu</h3>
+			<h3>Carousel</h3>
+			
+			<div class="row">
+				<div class="col-md-9">
+					<div class="container advertisement">
+						<section data-wb5='reveal timer nav'
+						data-wb5-nav-selector=".item"
+						data-wb5-nav-options='{ "classes": "active", "orientation": "horizontal", "KeepClassOnBlur": "true" }'
+						data-wb5-reveal-selector=".item"
+						data-wb5-timer-options='{ "eventname": "increment" }'
+						tabindex="0">
+						<div class="canvas relative mrgn-bttm-lg row" data-wb5="state" data-wb5-selector="nav li:nth-child(2) a" data-wb5-options='{"eventname": { "stop": "play", "start": "pause" }}'>
+							<!--nav class="">
+								<ul class="list-inline">
+									<li>
+										<a data-wb5="broadcast" data-wb5-broadcast-options='{"eventname":"stop decrement"}'>
+											<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+											<span class="sr-only"  tabindex="0">Previous</span>
+										</a>
+									</li>
+									<li >
+										<a class="pause sr-only" data-wb5="broadcast" data-wb5-broadcast-options='{"eventname":"start"}'>
+											<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+											<span class="sr-only"  tabindex="0">Play</span>
+										</a>
+										<a class="play" data-wb5="broadcast" data-wb5-broadcast-options='{"eventname":"stop"}'>
+											<span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+											<span class="sr-only"  tabindex="0">Pause</span>
+										</a>
+									</li>
+									<li>
+										<a data-wb5="broadcast" data-wb5-broadcast-options='{"eventname":"stop increment"}'>
+											<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+											<span class="sr-only" tabindex="0">Next</span>
+										</a>
+									</li>
+								</ul>
+							</nav--> 
+							<section class="item active">
+								<h2>Lorem ipsum dolor sit.</h2>
+								<figure>
+									<img src="../theme/gcweb/4/0/28/1/assets/bg-1.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+									<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing esectiont.</figcaption>
+								</figure>
+							</section>
+							
+							<section class="item">
+								<h2>Lorem ipsum dolor.</h2>
+								<figure>
+									<img src="../theme/gcweb/4/0/28/1/assets/bg-1.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+									<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing esectiont. Ipsum!</figcaption>
+								</figure>
+							</section>
+							
+							<section class="item">
+								<h2>Lorem ipsum dolor sit.</h2>
+								<figure>
+									<img src="../theme/gcweb/4/0/28/1/assets/bg-1.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+									<figcaption>Lorem ipsum dolor sit amet.</figcaption>
+								</figure>
+							</section>
+							
+							<section class="item">
+								<h2>Lorem ipsum dolor.</h2>
+								<figure>
+									<img src="../theme/gcweb/4/0/28/1/assets/bg-1.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+									<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing.</figcaption>
+								</figure>
+							</section>
+							<section class="item">
+								<h2>Lorem ipsum dolor sit amet, consectetur.</h2>
+								<figure>
+									<img src="../theme/gcweb/4/0/28/1/assets/bg-1.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+									<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing esectiont. Repudiandae, harum!</figcaption>
+								</figure>
+							</section>						
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+		
+		<h3>Calender</h3>
+		
+		<TABLE class="calender" border=3 tabindex="0" data-wb5="nav" data-wb5-nav-selector="tbody >tr> td" data-wb5-nav-options='{"orientation": "grid", "width": "7"}'>
+			<thead>
+				<Th>
+					<TD COLSPAN="7"><B>September 2018</B></TD>
+				</TR>				
+				<TR>
+					<TD>Sun</TD>
+					<TD>Mon</TD>
+					<TD>Tue</TD>
+					<TD>Wed</TD>
+					<TD>Thu</TD>
+					<TD>Fri</TD>
+					<TD>Sat</TD>
+				</TR>
+			</thead>
+			<tbody>
+				<TR>
+					<TD></TD>
+					<TD></TD>
+					<TD></TD>
+					<TD></TD>
+					<TD></TD>
+					<TD></TD>
+					<TD>1</TD>
+				</TR>
+				
+				<TR>
+					<TD>2</TD>
+					<TD>3
+						<ul data-wb5="nav" data-wb5-nav-selector="a" data-wb5-nav-options='{"orientation": "vertical", "classes":"active"}'>
+							<li>
+								<a tabindex="-1" href="#">Labor Day</a>
+							</li>
+						</ul>
+					</TD>
+					<TD>4</TD>
+					<TD>5</TD>
+					<TD>6</TD>
+					<TD>7
+						<ul data-wb5="nav" data-wb5-nav-selector="a" data-wb5-nav-options='{"orientation": "vertical", "classes":"active"}'>
+							<li>
+								<a tabindex="-1" href="#">Company Picnic</a>
+							</li>
+						</ul>
+					</TD>
+					<TD>8</TD>
+				</TR>
+				
+				<TR>
+					<TD>9</TD>
+					<TD>10</TD>
+					<TD>11</TD>
+					<TD>12</TD>
+					<TD>13</TD>
+					<TD>14</TD>
+					<TD>15</TD>
+				</TR>
+				
+				<TR>
+					<TD>16</TD>
+					<TD>17</TD>
+					<TD>18</TD>
+					<TD>19</TD>
+					<TD>20</TD>
+					<TD>21
+						<ul data-wb5="nav" data-wb5-nav-selector="a" data-wb5-nav-options='{"orientation": "vertical", "classes":"active"}'>
+							<li>
+								<a tabindex="-1" href="#">Jeb's Birthday</a>
+							</li>
+							<li>
+								<a tabindex="-1" href="#">The Big Meeting</a>
+							</li>
+						</ul>
+					</TD>
+					<TD>22</TD>
+				</TR>
+				
+				<TR>
+					<TD>23</TD>
+					<TD>24</TD>
+					<TD>25</TD>
+					<TD>26</TD>
+					<TD>27</TD>
+					<TD>28</TD>
+					<TD>29</TD>
+				</TR>
+				
+				<TR>
+					<TD>30</TD>
+					<TD></TD>
+					<TD></TD>
+					<TD></TD>
+					<TD></TD>
+					<TD></TD>
+					<TD></TD>
+					
+				</TR>
+			</tbody>
+		</TABLE>
+		
+		
+		<!--
+			<nav class="col-md-3">
+				<ul data-wb5="hover keys" data-wb5-keys-options='{"orientation":"vertical", "classname": "open active"}' data-wb5-keys-selector="ul" data-wb5-hover-selector="li" class="list-group menu list-unstyled">
+					<li><a class="list-group-item" href="#">Item 1</a></li>
+					<li><a tabindex='-1' class="list-group-item" href="#">Item 2</a></li>
+					<li><a tabindex='-1' class="list-group-item" href="#">Item 3<span class="expicon glyphicon glyphicon-chevron-right"></a>			
+						<ul class="list-group sm list-unstyled">
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 3.1</a></li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 3.2</a></li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 3.3</a></li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 3.4</a></li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 3.5</a></li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 3.6</a></li>
+						</ul>
+					</li>
+					<li><a tabindex='-1' class="list-group-item" href="#">Item 4</a></li>
+					<li><a tabindex='-1' class="list-group-item" href="#">Item 5<span class="expicon glyphicon glyphicon-chevron-right"></a>			
+						<ul class="list-group sm list-unstyled">
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 5.1</a></li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 5.2<span class="expicon glyphicon glyphicon-chevron-right"></a>			
+								<ul class="list-group sm list-unstyled">
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 5.2.1</a></li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 5.2.2</a></li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 5.2.3</a></li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 5.2.4</a></li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 5.2.5</a></li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 5.2.6</a></li>
+								</ul>
+							</li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 5.3</a></li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 5.4</a></li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 5.5<span class="expicon glyphicon glyphicon-chevron-right"></a>			
+								<ul class="list-group sm list-unstyled">
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 5.5.1</a></li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 5.5.2</a></li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 5.5.3<span class="expicon glyphicon glyphicon-chevron-right"></a>			
+										<ul class="list-group sm list-unstyled">
+											<li><a tabindex='-1' class="list-group-item" href="#">Item 5.5.3.1</a></li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item 5.5.3.2</a></li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item 5.5.3.3</a></li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item 5.5.3.4</a></li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item 5.5.3.5</a></li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item 5.5.3.6</a></li>
+										</ul>
+									</li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 5.5.4 </a></li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 5.5.5</a></li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 5.5.6</a></li>
+								</ul>
+							</li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 5.6</a></li>
+						</ul>
+					</li>
+					<li><a tabindex='-1' class="list-group-item" href="#">Item 6<span class="expicon glyphicon glyphicon-chevron-right"></a>			
+						<ul class="list-group sm list-unstyled">							
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 6.1</a></li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 6.2</a></li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 6.3</a></li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 6.5</a></li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6<span class="expicon glyphicon glyphicon-chevron-right"></a>			
+								<ul class="list-group sm list-unstyled">
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.1</a></li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.2<span class="expicon glyphicon glyphicon-chevron-right"></a>			
+										<ul class="list-group sm list-unstyled">
+											<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.2.1</a></li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.2.2<span class="expicon glyphicon glyphicon-chevron-right"></a>			
+												<ul class="list-group sm list-unstyled">
+													<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.2.2.1</a></li>
+													<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.2.2.2</a></li>
+													<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.2.2.3</a></li>
+													<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.2.2.4</a></li>
+													<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.2.2.5</a></li>
+													<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.2.2.6</a></li>
+												</ul>
+											</li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item  6.6.2.3</a></li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item  6.6.2.4</a></li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item  6.6.2.5</a></li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item  6.6.2.6</a></li>
+										</ul>
+									</li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.3</a></li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.4</a></li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.5<span class="expicon glyphicon glyphicon-chevron-right"></a>			
+										<ul class="list-group sm list-unstyled">
+											<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.5.1</a></li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.5.2</a></li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.5.3</a></li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.5.4</a></li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.5.5</a></li>
+											<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.5.6</a></li>
+										</ul>
+									</li>
+									<li><a tabindex='-1' class="list-group-item" href="#">Item 6.6.6</a></li>
+								</ul>
+							</li>
+							<li><a tabindex='-1' class="list-group-item" href="#">Item 7</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			
+			<div class="col-md-9">
+				<div class="container advertisement">
+					<section data-wb5='reveal timer'
+					data-wb5-reveal-selector=".item"
+					data-wb5-timer-options='{ "eventname": "increment" }'>
+					<div class="canvas relative mrgn-bttm-lg row" data-wb5="state" data-wb5-selector="nav li:nth-child(2) a" data-wb5-options='{"eventname": { "stop": "play", "start": "pause" }}'>
+						<nav class="">
+							<ul class="list-inline">
+								<li>
+									<a data-wb5="broadcast" data-wb5-broadcast-options='{"eventname":"stop decrement"}'>
+										<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+										<span class="sr-only"  tabindex="0">Previous</span>
+									</a>
+								</li>
+								<li >
+									<a class="pause sr-only" data-wb5="broadcast" data-wb5-broadcast-options='{"eventname":"start"}'>
+										<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+										<span class="sr-only"  tabindex="0">Play</span>
+									</a>
+									<a class="play" data-wb5="broadcast" data-wb5-broadcast-options='{"eventname":"stop"}'>
+										<span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+										<span class="sr-only"  tabindex="0">Pause</span>
+									</a>
+								</li>
+								<li>
+									<a data-wb5="broadcast" data-wb5-broadcast-options='{"eventname":"stop increment"}'>
+										<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+										<span class="sr-only" tabindex="0">Next</span>
+									</a>
+								</li>
+							</ul>
+						</nav> 
+						<ul tabindex="0" class="list-unstyled menu" data-wb5="keys" data-wb5-keys-options='{"classname": "active"}'>
+							<li class="item active">
+								<h2>Lorem ipsum dolor sit.</h2>
+								<figure>
+									<img src="../theme/gcweb/4/0/28/1/assets/bg-1.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+									<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</figcaption>
+								</figure>
+							</li>
+							
+							<li class="item">
+								<h2>Lorem ipsum dolor.</h2>
+								<figure>
+									<img src="../theme/gcweb/4/0/28/1/assets/bg-1.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+									<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum!</figcaption>
+								</figure>
+							</li>
+							
+							<li class="item">
+								<h2>Lorem ipsum dolor sit.</h2>
+								<figure>
+									<img src="../theme/gcweb/4/0/28/1/assets/bg-1.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+									<figcaption>Lorem ipsum dolor sit amet.</figcaption>
+								</figure>
+							</li>
+							
+							<li class="item">
+								<h2>Lorem ipsum dolor.</h2>
+								<figure>
+									<img src="../theme/gcweb/4/0/28/1/assets/bg-1.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+									<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing.</figcaption>
+								</figure>
+							</li>
+							<li class="item">
+								<h2>Lorem ipsum dolor sit amet, consectetur.</h2>
+								<figure>
+									<img src="../theme/gcweb/4/0/28/1/assets/bg-1.jpg" alt="Lorem ipsum dolor sit amet." class="img-responsive">
+									<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, harum!</figcaption>
+								</figure>
+							</li>
+						</ul>
+						
+						
+					</div>
+				</section>
+			</div>
+		</div>-->
+		
+		
+		<!--
+			
+			
+			<div class="wb-tabs container advertisement">
+				<section>
+					<ul role="tablist" id="tablist1" >
+						<li class="active"><a data-wb5="reveal broadcast" data-wb5-reveal-selector="#tabs1 .item;#tablist1 li" data-wb5-reveal-options='{"index":"0"}' data-wb5-broadcast-options='{"eventname":"select"}'>1</a></li>
+						<li><a data-wb5="reveal broadcast" data-wb5-reveal-selector="#tabs1 .item;#tablist1 li" data-wb5-reveal-options='{"index":"1"}' data-wb5-broadcast-options='{"eventname":"select"}'>2</a></li>
+						<li><a data-wb5="reveal broadcast" data-wb5-reveal-selector="#tabs1 .item;#tablist1 li" data-wb5-reveal-options='{ "index":"2"}' data-wb5-broadcast-options='{"eventname":"select"}'>3</a></li>
+						<li><a data-wb5="reveal broadcast" data-wb5-reveal-selector="#tabs1 .item;#tablist1 li" data-wb5-reveal-options='{"index":"3"}' data-wb5-broadcast-options='{"eventname":"select"}'>4</a></li>
+						<li><a data-wb5="reveal broadcast" data-wb5-reveal-selector="#tabs1 .item;#tablist1 li" data-wb5-reveal-options='{"index":"4"}' data-wb5-broadcast-options='{"eventname":"select"}'>5</a></li>
+					</ul>
+					<section class="tabs" id="tabs1">
+						<section class="item active">
+							<p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
+						</section>
+						<section class="item">
+							<p>BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB</p>
+						</section>
+						<section class="item">
+							<p>CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC</p>
+						</section>
+						<section class="item">
+							<p>DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD</p>
+						</section>
+						<section class="item">
+							<p>EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</p>
+						</section>
+					</section>
+				</section>
+			</div>
+			
+		-->
+	</main>
+	<!--#include virtual="partials/footer.html" -->
+	<!--#include virtual="partials/scripts.html" -->
+</body>
+</html>

@@ -38,7 +38,98 @@
 	line-height: 3em;
 }
 
-.relative { position: relative;}
+.menu > .open > ul{
+    display: inline !important;
+    max-height: 1000px !important;
+    min-width: 12.5em;
+    position: absolute !important;
+    text-transform: none;
+    top: auto;
+    z-index: 500;
+    background: #ccc;
+    border-bottom: 5px solid #243850;
+    overflow: visible;
+}
+
+.menu > .open > ul >li{
+    display:block;
+}
+
+.sm > .open > ul{
+    overflow: visible;
+    display: block !important;
+    max-height: 1000px !important;
+    min-width: 12.5em;
+    position: absolute !important;
+    text-transform: none;
+    margin-top: -33px;
+    left: 100%;
+    z-index: 100;
+    background: #ccc;
+    border-bottom: 5px solid #243850;
+}
+
+.sm >li{
+    display:block;
+}
+
+.sm > li > ul{
+    display: none !important;
+}
+
+.open > ul >li > a{
+    text-align: left !important;
+    color: #444 !important;
+    padding: 5px 10px !important;
+    text-shadow: none !important;
+}
+
+.open > ul > li > a:hover, .open > ul > li > a:focus, .open > ul > li > a:active{
+    color: #fff !important;
+}
+.open > ul > .slflnk > a{
+    background:#bbb;
+}
+.open > a > .glyphicon-chevron-down{
+    z-index: -1;
+}
+.open > a > .glyphicon-chevron-right{
+    z-index: -1;
+}
+
+li[class*=open] > a{
+    background: rgb(47, 48, 66) !important;
+    color: #fff !important;
+}
 
 
+.focus-within{
+    outline: rgb(41, 207, 41) dotted 3px !important;
+}
 
+*:focus{
+    outline: red dotted 3px !important;
+}
+
+.wb5Test{
+    outline: blue dotted 3px !important;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.calender td {
+    vertical-align: top;
+    height: 120px;
+    width: 100px;
+}
