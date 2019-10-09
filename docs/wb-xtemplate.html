@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>wb-xtemplate - Welcome - Web Experience Toolkit v5</title>
+    <!--<link rel="stylesheet" href="../theme/css/style.css">-->
+    
+</head>
+<body>
+    <h1>wb-xtemplate - Web Experience Toolkit - version 5 (Wet5)</h1>
+    <p>It extract the DOM to a JSO. Take a look at the browser console and to the DOM property wbdata of this custom element.</p>
+    <wb-xtemplate v="5"  selector='{
+            "/data1": ".data1",
+            "/data2": ".data2",
+            "/data3": ".data3",
+            "/data4/": ".data4 li",
+            "/data4/data4a": ".dataa",
+            "/data4/data4b": ".datab",
+            "/data4/data4c": ".datac",
+            "/data4/subobj/data4b": ".datab",
+            "/data4/subobj/data4c": ".datac",
+            "/data5": "#data5",
+            "/data5/data5a": ".dataa",
+            "/data5/data5b": ".datab",
+            "/data6/data6a": ".datac"
+        }'
+         
+        x-selector=',
+            "data6/data6a": ".datac"'
+        >
+        <h2>My data</p>
+        <p class="data1">data1</p>
+        <p class="data2">data2</p>
+        <p class="data3">data2</p>
+        <ul class="data4"> <!-- data 4 -->
+            <li><span class="dataa">data4a-1</span> - <div class="subObject"><span class="datab">data4b-1</span> - <span class="datac">data4c-1</span></div></li>
+            <li><span class="dataa">data4a-2</span> - <div class="subObject"><span class="datab">data4b-2</span> - <span class="datac">data4c-2</span></div></li>
+            <li><span class="dataa">data4a-3</span> - <div class="subObject"><span class="datab">data4b-3</span> - <span class="datac">data4c-3</span></div></li>
+        </ul>
+        <div id="data5">
+            <p class="dataa">data5a</p>
+            <p class="datab">data5b</p>
+            <p class="datac">data5c</p>
+        </div>
+    </wb-xtemplate>
+    <!-- 
+        Scripts
+    -->
+    <script src="../src/vendor/requirejs/2.3.6/require.js" data-main="../src/wet-boew.js"></script>
+</body>
+</html>
