@@ -1,0 +1,14 @@
+.wb-switcher {
+  display: block;
+}
+
+.wb-switcher > * {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.wb-switcher > * > * {
+  flex-basis: calc((var(--measure) - 100%) * 999);
+  flex-grow: 1;
+}

@@ -1,0 +1,9 @@
+.wb-image {
+  display: block;
+}
+.wb-image::after {
+  content: "";
+  display: block;
+  border: var(--border-thin) solid var(--color-dark);
+  background-image: paint(image-cross);
+}
