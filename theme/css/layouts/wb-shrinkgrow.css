@@ -1,0 +1,13 @@
+.wb-shrink-grow {
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
+  overflow: hidden;
+  border-width: var(--border-thin);
+  padding: var(--s1);
+}
+
+.wb-shrink-grow .test {
+  display: inline-block;
+}

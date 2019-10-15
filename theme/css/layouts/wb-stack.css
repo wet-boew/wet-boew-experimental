@@ -1,0 +1,9 @@
+.wb-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.wb-stack > * + * {
+  margin-top: var(--s1);
+}

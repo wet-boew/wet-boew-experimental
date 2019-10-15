@@ -1,0 +1,8 @@
+.wb-sidebar > * {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.wb-sidebar > * > * {
+  flex-grow: 1;
+}
