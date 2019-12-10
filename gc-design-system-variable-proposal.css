@@ -1,0 +1,167 @@
+/* CSS Theme Framework Proposal */
+
+/* First, it's important to allow for namespacing of the design system, which means the system can be installed and used in isolated instances, or it can be used sitewide. Clone does this by using an attribute called "data-clone", which needs to be applied to either the body element (if you're using Clone for your whole site) or a parent element (if you only want to use Clone on a particular set of elements in your project) or the CSS simply won't work. This is key for transitioning old projects to the new system, because it will allow the devs to build new pages/layouts/patterns in isolation without the worry of breaking the rest of the site. */
+
+/* Conceptually, the theming framework will have 2 sets of CSS variables for the repository, the first of which will determine the default/fallback values for the system, and the second set being the public-facing variables that can be used to "reskin" the system to meet third party needs. The first set of variables will have values that are determined by us, and reflect the Canada.ca theme. This means that anyone who installs the design system on their project can start building a site and it will default to the Canada.ca look and feel. If the user wants to reskin the system, they simply have to set their own variables (that we provide in a list format). */ 
+
+/* For example: */
+:root {
+    /* Canada.ca value, acts as a default/fallback. All --gc variables should have the value set to match the Canada.ca styleguide. These are not publicly available as a theming tool, they are only edited by us. */
+    --gc-font-serif: "Times New Roman", serif;
+    /* Public theme variable, if this variable is not specified by the user, the default/fallback is used. --gd variables are set by the user if they want to theme the system so that it no longer looks like the Canada.ca styleguide. */
+    --gd-font-serif: "Noto Serif", serif;
+}
+
+/* Using these variables in the design system CSS looks like this: */
+p {
+    /* GD Font Serif is used IF IT HAS BEEN DEFINED, otherwise, our fallback is used. */
+    font-family: var(--gd-font-serif, var(--gc-font-serif));
+}
+
+/* In practice, we'd have a list of all default variables, and then a separate list of public theme variables. The variables that we should define system wide depend on how much control we want/are able to relinquish to the user. I've proposed a list below based on my implementation of Clone, however, some of them might not be feasible for accessibility or tech reasons. Quite a few of the granular controls depend on things like calc() being present. */
+
+/* Core Layout Variables ==================================================== */
+/* These variables allow us to customize the value of default widths of page containers, how whitespace (i.e. margins and padding) is calculated, how whitespace responds to media queries, and how flexible the grid system is. */
+
+/* Container Values */
+/* These variables allow us to a) set a standard set of widths for pages, and b) allows the user of the system to change these values if the widths we've set don't suit their needs. */
+:root {
+    /* Small: used for containing text and ensuring readability of long swaths of text. */
+    --gc-layout-small: 39rem;
+    /* Medium: used for general UI. */
+    --gc-layout-medium: 60rem;
+    /* Large: used for large grids, or more complex UI that needs horizontal space. */
+    --gc-layout-large: 80rem;
+    /* There should also be a larger, default container that maintains full-screen width (with padding if we want whitespace on the edges) */
+}
+/* Example: */
+.container-large {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: var(--gd-layout-large, var(--gc-layout-large));
+    width: 95%;
+}
+
+/* Whitespace (Margins & Padding)
+/* These variables assign a default value to margins and padding (in a mobile first perspective), as well as how those values scale. */
+:root {
+    /* First, we set our defaults. These, along with "whitespace-multiplier" below, are the variables that get theme equivalents.  */
+    --gc-margin-default: 1rem;
+    --gc-padding-default: 1rem;
+    /* The multiplier that is used in our media query calculations to ensure consistency in scale as the device's screen grows. */
+    --gc-whitespace-multiplier: 1.4;
+    /* Now we set the values for usage. These aren't theme editable because they use the default values set above. */
+    --gc-margin-value: var(--gd-margin-default, var(--gc-margin-default));
+    --gc-padding-value: var(--gd-margin-default, var(--gc-margin-default));
+}
+/* Example: */
+/* First, we set how we want the margin value to change in each of our media queries. To do this, we use the default value in a calc function to multiple or divide it by our whitespace multiplier, which then sets the value variable to our new value for that media query. */
+@media screen and (min-width: 40rem) {
+    :root {
+        --gc-margin-value: calc(var(--gd-margin-default, var(--gc-margin-default)) * var(--gd-whitespace-multiplier, var(--gc-whitespace-multiplier)));
+    }
+}
+/* This value is now 1rem until the device is 40rem wide, at which point is becomes 1*1.4. */
+.margin-left {
+    margin-left: var(--gd-margin-value, var(--gc-margin-value));
+}
+
+/* Grid Variables
+/* These variables are needed within the context of WxT providing a grid system. If WxT isn't going to offer its own grid, or it's going to prescribe that users use CSS Grid, ignore these. */
+:root {
+    --gc-grid-gutter-value: 1rem;
+}
+/* Example: */
+.grid-with-gutter {
+    margin: calc(var(--gd-grid-gutter-value, var(--gc-grid-gutter-value)) * -1);
+}
+.grid-column-1of3 {
+    padding: var(--gd-grid-gutter-value, var(gc-grid-gutter-value));
+}
+
+/* Typography Variables ===================================================== */
+/* These variables are used to define standard typographic elements. Note the the color of typography is covered in the color section below. */
+:root {
+    /* Font Types - to help avoid using multiple fonts inconsistently, we can set default fonts for serif, sans-serif, monospace, and script. This doesn't prevent other fonts from being used, but it allows us to set the fonts on components and maintain that consistency across the experience. */
+    --gc-font-sans: "Arial", sans-serif;
+    --gc-font-sans-serif: var(--gd-font-sans, var(--gc-font-sans)); /* Sometimes people want to type out the whole name, so this is repeated for their sake. */
+    --gc-font-serif: "Times New Roman", serif;
+    --gc-font-mono: "Consolas", monospace;
+    --gc-font-monospace: var(--gd-font-mono, var(--gc-font-mono)); /* Same idea here. */
+    --gc-font-script: script;
+    /* We can define a universal line height. */
+    --gc-font-line-height: 1.5;
+    /* This variable should be used on the HTML. It tells the site to respect the user's browser font size setting at 100%. Typically this variable can be set to something slightly lower than 100% on smaller devices, and something slightly higher on larger devices. Providing a variable for this allows the site to cater to different audiences (maybe they want their default font size to always be 150% of the user's setting to ensure visibility). */
+    --gc-font-size-setting: 100%;
+    /* Now we set the default font size. This variable allows us to manipulate the font scale using a multiplier, similarly to the margins and padding above. */
+    --gc-font-size-default: 1rem;
+    /* Now the multiplier (this creates a proper typography scale, Google "type scales" for more info. */
+    --gc-font-size-scale: 1.333;
+    --gc-font-size-caption: calc(var(--gd-font-size-default, var(--gc-font-size-default)) / var(--gd-font-size-scale, var(--gc-font-size-scale)));
+    --gc-font-size-copy: var(--gd-font-size-default, var(--gc-font-size-default));
+    --gc-font-size-h5: calc(var(--gd-font-size-default, var(--gc-font-size-default)) * var(--gd-font-size-scale, var(--gc-font-size-scale)));
+    --gc-font-size-h4: calc(var(--gd-font-size-h5, var(--gc-font-size-h5)) * var(--gd-font-size-scale, var(--gc-font-size-scale)));
+    --gc-font-size-h3: calc(var(--gd-font-size-h4, var(--gc-font-size-h4)) * var(--gd-font-size-scale, var(--gc-font-size-scale)));
+    --gc-font-size-h2: calc(var(--gd-font-size-h3, var(--gc-font-size-h3)) * var(--gd-font-size-scale, var(--gc-font-size-scale)));
+    --gc-font-size-h1: calc(var(--gd-font-size-h2, var(--gc-font-size-h2)) * var(--gd-font-size-scale, var(--gc-font-size-scale)));
+}
+/* Example: */
+html {
+    font-size: var(--gd-font-size-setting, var(--gc-font-size-setting));
+}
+h1 {
+    font-family: var(--gd-font-sans, var(--gc-font-sans));
+    font-size: var(--gd-font-size-h1, var(--gc-font-size-h1));
+    line-height: var(--gd-font-line-height, var(--gc-font-line-height));
+}
+
+/* Theme Color Variables ==================================================== */
+/* These variables are used to define the theme's color palette, and how that palette is spread to each component. */
+/* Palette */
+/* The number of colors we offer in the palette is totally open for discussion. Clone uses 5 as a maximum to avoid for confusion, but we might want more or less depending on the restrictions we want to introduce. Colors beyond the palette can be added manually by the user if they really want to, but they won't propagate to the components the same way theme colors do, unless they manually override the system. */
+:root {
+    /* Define black, gray, and white. */
+    --gc-palette-white: rgba(255, 255, 255, 1);
+    --gc-palette-gray: rgba(225, 225, 225, 1);
+    --gc-palette-black: rgba(30, 30, 30, 1);
+    /* Define "stoplight" colors - these are used in instances where you need to indicate go, slow, stop, good, warning, bad, etc. */
+    --gc-palette-stop: red;
+    --gc-palette-slow: yellow;
+    --gc-palette-go: green;
+    /* Define the actual theme colors. The names of these variables can change, but I like the consistency. We might want to go with "main color" and "accent color" etc. */
+    --gc-theme-color-1: rgba(50, 0, 200, 1);
+    --gc-theme-color-2: rgba(60, 0, 180, 1);
+    --gc-theme-color-3: rgba(70, 0, 160, 1);
+    --gc-theme-color-4: rgba(80, 0, 140, 1);
+    --gc-theme-color-5: rgba(90, 0, 120, 1);
+}
+/* From here, you can start to define sitewide color variables that you want to control. For example, if you want h1 elements to always be theme color 2 by default, set that. Sometimes you'll want to set a default value but allow the user to customize it, in which case, you'll want to create a specific theme variable for them to control it with: */
+:root {
+    /* We set our intended color choice here. */
+    --gc-blockquote-background-color: var(--gd-theme-color-1, var(--gc-theme-color-1));
+}
+blockquote {
+    /* And allow them to override it here, by letting them set the --gd variable. */
+    background: var(--gd-blockquote-background-color, var(--gc-blockquote-background-color));
+}
+/* This logic applies to A LOT, and not all of it is stuff we can copy straight from Clone, because I might have allowed for more liberty than DTO intends to provide, or the liberty might break accessibility things. A list off the top of my head includes:
+- h1, h2, h3, h4, h5, copy, caption color variables
+- button color variables
+- horizontal rule color variables
+- text selection color variables
+- link color variables (include visited, etc.)
+- hover color variables
+- focus border/background color variables 
+- component specific color variables */
+
+/* Component Specific Variables ============================================= */
+/* This is where things get interesting, because we can create variables that allow for certain control over the paint CSS each component or composite component has. As an example, I'll use table elements. */
+:root {
+    --gc-table-header-background-color: var(--gd-theme-color-1, var(--gc-theme-color-1));
+    --gc-table-header-font-color: var(--gd-theme-color-1, var(--gc-theme-color-1));
+    --gc-table-alternating-row-color: var(--gd-palette-gray, var(--gc-palette-gray));
+    --gc-table-border-color: var(--gd-theme-color-1, var(--gc-theme-color-1));
+    --gc-table-border-thickness: .1rem;
+    --gc-table-icon-color: var(--gd-palette-white, var(--gc-palette-white));
+    /* You can see how easily this gets granular, per component. Each component will need decisions on what should be controllable vs. what should be determined by the system. */
+}
