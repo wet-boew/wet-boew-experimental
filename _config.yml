@@ -237,7 +237,8 @@ defaults:
           fr: Vous êtes ici&#160;
       layout: "page"
       javascript:
-        - "<script src=\"/src/vendor/requirejs/2.3.6/require.js\" data-main=\"/src/wet-boew.js\"></script>"
+        - src: "/src/vendor/requirejs/2.3.6/require.js"
+          data-main: "/src/wet-boew.js"
       lang: "en"
       langtoggle: true
       noMainContainer: false
@@ -255,7 +256,6 @@ lang: en-CA # Set the site language
 logo: "/assets/logos/logo.svg" # Site logo, also used in jekyll-seo-tag
 description: "A Jekyll boilerplate to build a site with the Canada.ca template from GCWeb-Jekyll (wet-boew/gcweb-jekyll)" # Site description and default description, also used in jekyll-seo-tag
 url: "https://canada.ca" # Site url, also used in jekyll-seo-tag
-baseurl: ""
 repo: "https://github.com/wet-boew/gcweb-jekyll"
 
 # disqus: " " # Blog post comments, uncomment the option and set the site ID from your Disqus account
