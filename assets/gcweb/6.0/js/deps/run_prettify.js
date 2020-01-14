@@ -37,7 +37,7 @@
  * |                  |               | named "<NAME>.css".          |        |
  * |                  |               | https://cdn.rawgit.com/      |        |
  * |                  |               | google/code-prettify/master/ |        |
- * |                  |               | styles/index.html            |        |
+ * |                  |               | styles/index.md            |        |
  * +------------------+---------------+------------------------------+--------+
  * | callback=        | JS identifier | When "prettyPrint" finishes  | none   |
  * |                  |               | window.exports[js_ident] is  |        |
