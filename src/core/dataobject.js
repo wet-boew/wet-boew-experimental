@@ -5,107 +5,98 @@
  */
 
 define([], function () {
-    "use strict";
+  "use strict";
 
-    var instance = null;
+  let instance = null;
 
-
-    function DataObject() {
-
-        if (instance !== null) {
-            throw new Error("Cannot instantiate more than one dataobject, use <objectname>.getInstance()");
-        }
-        this.initialize();
+  function DataObject() {
+    if (instance !== null) {
+      throw new Error("Cannot instantiate more than one dataobject, use <objectname>.getInstance()");
     }
+    this.initialize();
+  }
 
-    /**
-     * DataObject Object
-     * @type {{initialize: initialize}}
-     * @assumptions:
-     *  While we are striving follow the RDF/JS specification for initial versions we will leverage the recommendations
-     *  W3C and build the interface but some model elements were assumed
-     *  - Quad schema [ subject -> JSON object property, predicate -> equals, object -> value, graph -> page ]
-     *  @credits: https://rdf.js.org/dataset-spec/
-     */
-    DataObject.prototype = {
+  /**
+   * DataObject Object
+   * @type {{initialize: initialize}}
+   * @assumptions:
+   *  While we are striving follow the RDF/JS specification for initial versions we will leverage the recommendations
+   *  W3C and build the interface but some model elements were assumed
+   *  - Quad schema [ subject -> JSON object property, predicate -> equals, object -> value, graph -> page ]
+   *  @credits: https://rdf.js.org/dataset-spec/
+   */
+  DataObject.prototype = {
 
-        initialize: function () {
-            this._data = {}
-        },
+    initialize: function () {
+      this._data = {}
+    },
 
-        size: function () {
+    size: function () {
 
-            if ( this._data.length > 0 ) {
-                return this._data.length
-            }
-            return 0;
-        },
+      if (this._data.length > 0) {
+        return this._data.length
+      }
+      return 0;
+    },
 
-        add: function ( property, value )
-        {
-            this._data[property] = value;
-            return this;
-        },
+    add: function (property, value) {
+      this._data[property] = value;
+      return this;
+    },
 
-        delete: function ( property, value )
-        {
-            const _var = this._data[property];
+    delete: function (property, value) {
+      const _var = this._data[property];
 
-            delete this._data[property];
+      delete this._data[property];
 
-            return _var;
-        },
+      return _var;
+    },
 
-        has: function ( property, value ) {
+    has: function (property, value) {
 
-            if ( value )
-            {
-                return this._data.hasOwnProperty( property ) && this._data[ property ] === value
-            }
+      if (value) {
+        return this._data.hasOwnProperty(property) && this._data[property] === value
+      }
 
-            return this._data.hasOwnProperty( property )
-        },
+      return this._data.hasOwnProperty(property)
+    },
 
-        match: function ( property, value ) {
+    match: function (property, value) {
 
-            // request will return the true or false if this property and value exist
-            // @returns: boolean
-            if ( value && property )
-            {
-                return this.has( property, value );
-            }
+      // request will return the true or false if this property and value exist
+      // @returns: boolean
+      if (value && property) {
+        return this.has(property, value);
+      }
 
-            // requesting all items that have a value
-            // @returns: {array} of keys
-            if ( value )
-            {
+      // requesting all items that have a value
+      // @returns: {array} of keys
+      if (value) {
 
-                let _keys = [];
+        let _keys = [];
 
-                for (const [_prop, _val] of Object.entries( this._data ))
-                {
-                    if ( value === _val )
-                    {
-                        _keys.push( _prop );
-                    }
-                }
-
-                return ( _keys.length ) ? _keys : false;
-            }
-
-            // check if the store has the property and return it, or false if nothing
-            // @returns: {object|boolean}
-            return ( this.has( property ) ) ? this._data[ property ] : false ;
+        for (const [_prop, _val] of Object.entries(this._data)) {
+          if (value === _val) {
+            _keys.push(_prop);
+          }
         }
-    };
 
-    DataObject.getInstance = function () {
+        return (_keys.length) ? _keys : false;
+      }
 
-        if ( instance === null ) {
-            instance = new DataObject();
-        }
-        return instance;
-    };
+      // check if the store has the property and return it, or false if nothing
+      // @returns: {object|boolean}
+      return (this.has(property)) ? this._data[property] : false;
+    }
+  };
 
-    return DataObject.getInstance();
+  DataObject.getInstance = function () {
+
+    if (instance === null) {
+      instance = new DataObject();
+    }
+    return instance;
+  };
+
+  return DataObject.getInstance();
 });
