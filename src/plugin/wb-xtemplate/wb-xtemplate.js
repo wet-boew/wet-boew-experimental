@@ -331,7 +331,15 @@ Final Object (with a reference to a DOM Node)
 			if( !transitObj.subspaceMod && transitObj.subspace ) {
 
 				// Remove 1 level 
-				transitObj.subspace = transitObj.subspace.match( /(?<=\/).*/ )[ 0 ] || "";
+				console.log( transitObj.subspace );
+				
+				
+				const idxOfSubSpace = transitObj.subspace.indexOf( "/" );
+				let newSubSpace = "";
+				if ( idxOfSubSpace !== -1 ) {
+					newSubSpace = transitObj.subspace.substring( idxOfSubSpace + 1 );
+				}
+				transitObj.subspace = newSubSpace;
 				transitObj.subspaceMod = true;
 			}
 
