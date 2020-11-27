@@ -45,6 +45,87 @@ Extract
 
 
 
+/*
+var DataExtractor = {
+
+	id: "ComponentName",
+	elm: "Reference to the HTML Element wrapping it",
+	target: [
+		{
+			// Data pointer
+			prop: "NameOfTheProperties",
+			
+			// How to interprete the data being read
+			isMultiple: yes|no // If there is multiple (QuerySelectorAll) or single (QuerySelector)
+			
+			readAs: "Array|SingleChoice|TextualValue-Value|RegExValue-Value|Boolean|Numeric|DateTime",
+			
+			mapValue: "String|RegEx"
+			
+			mapValue: {
+				"":"",
+				"Value FROM CSS Selector":"Value to keep internally"
+				
+				// i18n Mapping
+				"Value FROM CSS Selector": [
+					{
+						@value: "Value to return",
+						@lang: "Language code"
+					},
+					{
+						@value: "Value to return",
+						@lang: "Language code 2"
+					}
+				]
+			}
+			
+			// Inverse of mapValue
+			mapReturn: {
+				"":"",
+				"Value to keep internally": "Value FROM CSS Selector"
+				
+				// i18n Mapping
+				"Value to return": [
+					{
+						@value: "Value FROM CSS Selector",
+						@lang: "Language code"
+					},
+					{
+						@value: "Value FROM CSS Selector",
+						@lang: "Language code 2"
+					}
+				]
+			}
+			
+			
+			
+			// Selector Info
+			type: "CssSelector",
+			value: ".data1"
+	
+			// Sub inner object
+			refinedBy: {
+			
+			}
+		}
+	]
+
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 define( [ "../../vendor/jsonpointer/jsonpointer" ], function( jsonPointer ) {
     "use strict";
 
@@ -53,6 +134,9 @@ define( [ "../../vendor/jsonpointer/jsonpointer" ], function( jsonPointer ) {
     let namespaceElement = {};
 	let lastNamespaceElement = "";
 
+	//let fullDataExtracted = {};
+	let tripleIndexes = {};
+	
     // Plugin init function
 	function init( elm ) {
 
@@ -63,6 +147,7 @@ define( [ "../../vendor/jsonpointer/jsonpointer" ], function( jsonPointer ) {
 		elm.wbData = dataExtracted;
 
 		console.log( dataExtracted );
+		console.log( tripleIndexes );
 	}
 
 	function extractDataStructure( elm, rawSelectors ) {
@@ -175,16 +260,78 @@ Final Object (with a reference to a DOM Node)
 				}
 		}
 	],
-	"data5":
-		{
-			"data5a":{},
-			"data5b":{}
-		},
-	"data6":
-		{
-			"data6a":{}
-		}
+	"data5": {
+		"data5a":{},
+		"data5b":{}
+	},
+	"data6": {
+		"data6a":{}
 	}
+}
+
+
+Referent object, RDF quad/triple 
+
+{
+	"data1":{},
+	"data2":{},
+	"data3":{},
+	"data4": [
+		{
+			"data4a":{},
+			"data4b":{},
+			"data4c":{},
+			"subobj":
+				{
+					"data4b":{},
+					"data4c":{}
+				}
+		},
+		{
+			"data4a":{},
+			"data4b":{},
+			"data4c":{},
+			"subobj":
+				{
+					"data4b":{},
+					"data4c":{}
+				}
+		},
+		{
+			"data4a":{},
+			"data4b":{},
+			"data4c":{},
+			"subobj":
+				{
+					"data4b":{},
+					"data4c":{}
+				}
+		}
+	],
+	"data5": {
+		"data5a":{},
+		"data5b":{}
+	},
+	"data6": {
+		"data6a":{}
+	}
+}
+
+Graph indexes
+{ 
+	"#PluginId" : { triple object }
+}
+
+Triple indexes
+{
+	"Object Property": {
+		v: --value--
+		d: --DOM object reference--
+		g: --Graph reference--
+	}
+}
+
+
 		*/
 
 
@@ -202,6 +349,19 @@ Final Object (with a reference to a DOM Node)
 
 			// If the first character is not a "/", then assume the user use a dot notation
 			let pointer = key;
+			
+			
+			let attributeName,
+				valueParsed = value;
+			// Do we need to get from an attribute?
+			if ( valueParsed.startsWith( "@" ) ) {
+				// Get the attribute name to select
+				attributeName = valueParsed.match( /^@(.?)*\s/ )[0].trim().slice( 1 );
+
+				// Remove the attribute selector
+				valueParsed = valueParsed.substring( attributeName.length + 2 );
+			
+			}
 
 			if( pointer.substring(0, 1) !== "/" ) {
 				pointer = "/" + pointer.replace( /\./g, '/' );
@@ -214,7 +374,8 @@ Final Object (with a reference to a DOM Node)
 				path = isList ? pointer.slice( 0, -1 ) : pointer,
 				propParsed = path.match( /(^(.+?\/)+)/ ), 
 				namespace = propParsed && propParsed[ 0 ] || "/",
-				prop = "/" + path.substring( namespace.length );
+				propName = path.substring( namespace.length ),
+				prop = "/" + propName;
 
 			if ( deep > maxDeep ) {
 				maxDeep = deep;
@@ -223,12 +384,14 @@ Final Object (with a reference to a DOM Node)
 
 			let transitObjNew = {
 				pointer: pointer,
-				value: value,
+				value: valueParsed,
 				namespace: namespace,
 				subspace: namespace.substring( 1 ),
 				prop: prop,
+				propName: propName,
 				path: path,
-				isList: isList
+				isList: isList,
+				attribute: attributeName
 			}
 
 			if ( namespace ) {
@@ -262,7 +425,7 @@ Final Object (with a reference to a DOM Node)
 
 
 
-	function retreiveData( elm, transitObj, finalObj ) {
+	function retreiveData( elm, transitObj, finalObj, lstIndex ) {
 
 		// Caching for sub object
 		if ( transitObj.subspace ) {
@@ -272,18 +435,18 @@ Final Object (with a reference to a DOM Node)
 			} else {
 
 				// If sub-object, let object to be in the namespaceElement
-				let elmFromSubspace = jsonPointer.get( finalObj, "/" + transitObj.subspace.slice( 0, -1 ) );
-
+				const path = "/" + transitObj.subspace.slice( 0, -1 );
+				let elmFromSubspace = jsonPointer.get( finalObj, path );
+				let valSubSpace = {};
+				
 				if ( elmFromSubspace ) {
-					namespaceElement[ transitObj.namespace ] = elmFromSubspace;
-
-					// We remove the existing reference
-					jsonPointer.set( finalObj, "/" + transitObj.subspace.slice( 0, -1 ), undefined);
 					elm = elmFromSubspace;
-				} else {
-					namespaceElement[ transitObj.namespace ] = elm;
-					jsonPointer.set( finalObj, "/" + transitObj.subspace.slice( 0, -1 ), {});
-				}
+					valSubSpace = undefined; // To remove the existing reference
+				} 
+				
+				namespaceElement[ transitObj.namespace ] = elm;
+				jsonPointer.set( finalObj, path, valSubSpace);
+
 			}
 			if ( !transitObj.propSubspaceSet ) {
 				transitObj.prop = "/" + transitObj.subspace + transitObj.prop.substring( 1 );
@@ -311,17 +474,65 @@ Final Object (with a reference to a DOM Node)
 
 			// ok, let fix this obj
 			let domSelected = elm.querySelector( transitObj.value );
+			
+			// Ensure an element is selected
+			if ( !domSelected ) {
+				throw "Invalid CSS selector: " + transitObj.value;
+			}
+			
+			// Check if we need to grab the textContent or the attribute content
+			if( transitObj.attribute ) {
+				domSelected = domSelected.getAttributeNode( transitObj.attribute );
+			}
+			
+			
 			jsonPointer.set( finalObj, transitObj.prop, domSelected );
-
+			
+			let propPath = transitObj.prop;
+			
+			if ( transitObj && transitObj.namespace && lstIndex !== undefined ) {
+				//console.log( transitObj );
+				propPath = transitObj.namespace + "[" + lstIndex + "]" + propPath;
+			}
+			
+			tripleIndexes[ propPath ] = {
+				d: domSelected,
+				v: domSelected.textContent
+			}
+			
+	/*		
+			console.log( transitObj.prop );
+			console.log( finalObj );
+			console.log( finalFullObj );
+			jsonPointer.set( finalFullObj, transitObj.prop, {} );
+			
+			
+			Object.defineProperty( finalFullObj, transitObj.propName, {
+				get: function get() {
+					return domSelected.textContent;
+				},
+				set: function set(newVal) {
+					console.log( "Setting" );
+					console.log( newVal );
+					domSelected.textContent = newVal;
+					//notify( key ); // Trigger the notify function if needed.
+				}
+			});
+*/
+			
+			if ( transitObj.prop === "/data5" ) {
+				//throw "Stop me"
+			}
 		}
 
 
 	}
 
 
-	function extractSubObj( elm, listTransitObj ) {
+	function extractSubObj( elm, listTransitObj, idxListIterator ) {
 
-		let finalSubObj = {};
+		let finalSubObj = {},
+			finalFullSubObj = {};
 
 		// For each data in that namespace
 		for( let i = 0; i !== listTransitObj.length; i += 1 ) {
@@ -333,7 +544,6 @@ Final Object (with a reference to a DOM Node)
 				// Remove 1 level 
 				console.log( transitObj.subspace );
 				
-				
 				const idxOfSubSpace = transitObj.subspace.indexOf( "/" );
 				let newSubSpace = "";
 				if ( idxOfSubSpace !== -1 ) {
@@ -343,7 +553,7 @@ Final Object (with a reference to a DOM Node)
 				transitObj.subspaceMod = true;
 			}
 
-			retreiveData( elm, transitObj, finalSubObj );
+			retreiveData( elm, transitObj, finalSubObj, idxListIterator );
 
 		}
 
@@ -355,6 +565,7 @@ Final Object (with a reference to a DOM Node)
 
 		if ( elm.length ) {
 			let ArrayOfItem = [];
+			let ArrayOfItemFull = [];
 
 			// Merge down the namespaceData that are more specific
 			let keyToRemove = [];
@@ -371,7 +582,7 @@ Final Object (with a reference to a DOM Node)
 			for( let i = 0; i !== elm.length; i += 1 ) {
 
 				const currentElm = elm[ i ];
-				const objToSave = extractSubObj( currentElm, namespaceData[ transitObj.pointer ] );
+				const objToSave = extractSubObj( currentElm, namespaceData[ transitObj.pointer ], i );
 
 				if( lastNamespaceElement ) {
 					delete namespaceElement[ lastNamespaceElement ]
@@ -393,6 +604,7 @@ Final Object (with a reference to a DOM Node)
 
 			const objToSave = extractSubObj( elm, namespaceData[ transitObj.pointer ] );
 			jsonPointer.set( finalObj, transitObj.path, objToSave );
+			
 		}
 
 	}

@@ -59,6 +59,129 @@
         </div>
     </wb-xtemplate>
 
+<details><summary>Produce an JS object like</summary>
+	<pre><code>{
+  "data1": {},
+  "data2": {},
+  "data3": {},
+  "data4": [
+    {
+      "data4a": {},
+      "data4b": {},
+      "data4c": {},
+      "subobj": {
+        "data4b": {},
+        "data4c": {}
+      }
+    },
+    {
+      "data4a": {},
+      "data4b": {},
+      "data4c": {},
+      "subobj": {
+        "data4b": {},
+        "data4c": {}
+      }
+    },
+    {
+      "data4a": {},
+      "data4b": {},
+      "data4c": {},
+      "subobj": {
+        "data4b": {},
+        "data4c": {}
+      }
+    }
+  ],
+  "data5": {
+    "data5a": {},
+    "data5b": {}
+  },
+  "data6": {
+    "data6a": {}
+  }
+}</code></pre>
+	</details>
+	
+	<wb-xtemplate v="5" 
+        selector='{
+            "/name": ".name",
+            "/telephone": "@class .phone",
+            "/details": ".details"
+        }'
+        >
+		<h2>Simple object, one level</h2>
+		<dl>
+			<dt>Name:</dt>
+			<dd class="name">John Smith</dd>
+			<dt>Telephone:</dt>
+			<dd class="phone">555-555-5555</dd>
+		</dl>
+		<h3>Details</h3>
+        <p class="details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et est et sem tincidunt posuere. Praesent bibendum vulputate sapien. Vivamus efficitur volutpat ex. Donec semper dolor id tempus porta. Integer mattis posuere velit, sed sollicitudin felis consectetur quis. Fusce porttitor rhoncus vestibulum. Morbi quis porta tortor. Integer dolor libero, tristique eget tortor id, ullamcorper fringilla ipsum.</p>
+    </wb-xtemplate>
+	
+	<details><summary>Produce an JS object like</summary>
+	<pre><code>{
+  "name": {},
+  "telephone": {},
+  "details": {}
+}</code></pre>
+	</details>
+	
+	
+	<wb-xtemplate v="5" 
+        selector='{
+            "/subject": "p",
+            "/listing/": "tbody tr",
+			"/listing/name": ":nth-child(1)",
+            "/listing/telephone": ":nth-child(2)",
+            "/listing/comments": ":nth-child(3)"
+        }'
+        >
+		<h2>Listing</h2>
+		<p>This is about...
+		<table>
+			<thead><tr>
+				<th>Name
+				<th>Telephone
+				<th>Comments
+			<tbody><tr>
+				<td>nhoJ htimS
+				<td>666-666-6666
+				<td>Lorem Ipsum
+			<tr>
+				<td>Joe Blow
+				<td>777-777-7777
+				<td>muspI meroL
+			<tr>
+				<td>No name
+				<td>888-888-8888
+				<td>
+		</table>
+    </wb-xtemplate>
+	<details><summary>Produce an JS object like</summary>
+	<pre><code>{
+  "subject": {},
+  "listing": [
+    {
+      "name": {},
+      "telephone": {},
+      "comments": {}
+    },
+    {
+      "name": {},
+      "telephone": {},
+      "comments": {}
+    },
+    {
+      "name": {},
+      "telephone": {},
+      "comments": {}
+    }
+  ]
+}</code></pre>
+	</details>
     <h2>Attribute <code>selector</code></h2>
 
     <dl>
