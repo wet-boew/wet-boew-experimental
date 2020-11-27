@@ -45,6 +45,87 @@ Extract
 
 
 
+/*
+var DataExtractor = {
+
+	id: "ComponentName",
+	elm: "Reference to the HTML Element wrapping it",
+	target: [
+		{
+			// Data pointer
+			prop: "NameOfTheProperties",
+			
+			// How to interprete the data being read
+			isMultiple: yes|no // If there is multiple (QuerySelectorAll) or single (QuerySelector)
+			
+			readAs: "Array|SingleChoice|TextualValue-Value|RegExValue-Value|Boolean|Numeric|DateTime",
+			
+			mapValue: "String|RegEx"
+			
+			mapValue: {
+				"":"",
+				"Value FROM CSS Selector":"Value to keep internally"
+				
+				// i18n Mapping
+				"Value FROM CSS Selector": [
+					{
+						@value: "Value to return",
+						@lang: "Language code"
+					},
+					{
+						@value: "Value to return",
+						@lang: "Language code 2"
+					}
+				]
+			}
+			
+			// Inverse of mapValue
+			mapReturn: {
+				"":"",
+				"Value to keep internally": "Value FROM CSS Selector"
+				
+				// i18n Mapping
+				"Value to return": [
+					{
+						@value: "Value FROM CSS Selector",
+						@lang: "Language code"
+					},
+					{
+						@value: "Value FROM CSS Selector",
+						@lang: "Language code 2"
+					}
+				]
+			}
+			
+			
+			
+			// Selector Info
+			type: "CssSelector",
+			value: ".data1"
+	
+			// Sub inner object
+			refinedBy: {
+			
+			}
+		}
+	]
+
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 define( [ "../../vendor/jsonpointer/jsonpointer" ], function( jsonPointer ) {
     "use strict";
 
@@ -268,6 +349,19 @@ Triple indexes
 
 			// If the first character is not a "/", then assume the user use a dot notation
 			let pointer = key;
+			
+			
+			let attributeName,
+				valueParsed = value;
+			// Do we need to get from an attribute?
+			if ( valueParsed.startsWith( "@" ) ) {
+				// Get the attribute name to select
+				attributeName = valueParsed.match( /^@(.?)*\s/ )[0].trim().slice( 1 );
+
+				// Remove the attribute selector
+				valueParsed = valueParsed.substring( attributeName.length + 2 );
+			
+			}
 
 			if( pointer.substring(0, 1) !== "/" ) {
 				pointer = "/" + pointer.replace( /\./g, '/' );
@@ -290,13 +384,14 @@ Triple indexes
 
 			let transitObjNew = {
 				pointer: pointer,
-				value: value,
+				value: valueParsed,
 				namespace: namespace,
 				subspace: namespace.substring( 1 ),
 				prop: prop,
 				propName: propName,
 				path: path,
-				isList: isList
+				isList: isList,
+				attribute: attributeName
 			}
 
 			if ( namespace ) {
@@ -380,7 +475,16 @@ Triple indexes
 			// ok, let fix this obj
 			let domSelected = elm.querySelector( transitObj.value );
 			
-		
+			// Ensure an element is selected
+			if ( !domSelected ) {
+				throw "Invalid CSS selector: " + transitObj.value;
+			}
+			
+			// Check if we need to grab the textContent or the attribute content
+			if( transitObj.attribute ) {
+				domSelected = domSelected.getAttributeNode( transitObj.attribute );
+			}
+			
 			
 			jsonPointer.set( finalObj, transitObj.prop, domSelected );
 			
