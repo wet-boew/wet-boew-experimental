@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>wb-render - Welcome - Web Experience Toolkit v5</title>
+    <link rel="stylesheet" href="../theme/css/style.css">
+    
+</head>
+<body class="max-width wb-center wb-slack">
+    <h1><code>&lt;wb-render&gt;</code> - Web Experience Toolkit - version 5 (Wet5)</h1>
+
+	<!--
+	   *
+	   * Data interaction demo
+	   *
+	   * -->
+	<p>Set <code>placeholderText</code> value: <button value="ABC">ABC</button>, <button value="Hello">Hello</button>, <button value="World">World</button></p>
+	<script>
+		function updateData( event ) {
+			var elm = event.currentTarget,
+				wbRender = document.getElementById( "updateMe" );
+			
+			wbRender.databind.placeholderText = elm.value;
+		}
+		
+		var buttons = document.querySelectorAll("button");
+		buttons.forEach( function( btn ) {
+			
+			btn.addEventListener( "click", updateData );
+		
+		} );
+	</script>
+	<!--
+	   * END Data interaction demo 
+	   * -->
+	
+	
+	<!-- 
+	 *
+	 * Explicit
+	 *
+	 *-->
+	<wb-render id="updateMe" v="5" template="myID" datalayer='{
+	"prop": "test",
+	"showSecondList": false,
+	"placeholderText": "Here some placeholder text",
+	"arrayOfSomething": [
+		"Value 1",
+		"value 2",
+		"Value 3"
+	]
+}'>
+		<!-- Initial HTML here -->
+	</wb-render>
+	<template id="myID">
+		<p>{{prop}}</p>
+		<ul>
+			<li data-wb5-for="itm in arrayOfSomething">{{itm}}</li>
+		</ul>
+
+		<p data-wb5-text="placeholderText"></p>
+
+		<p>The following list depends of the value of <code>showSecondList</code></p>
+		<ul>
+			<li data-wb5-for="iterator in arrayOfSomething" data-wb5-if="parent.showSecondList">{{iterator}}</li>
+		</ul>
+
+		<input data-wb5-bind="placeholder@placeholderText" style="width:100%" />
+	</template>
+
+	<!-- 
+	 *
+	 * Implicit
+	 *
+	 *-->
+	<!-- <wb-render v="5">
+		<template>
+
+		</template>
+		< ! - - Initial HTML here - - >
+	</wb-render> -->
+
+    <script src="../src/vendor/requirejs/2.3.6/require.js" data-main="../src/wet-boew.js"></script>
+</body>
+</html>
