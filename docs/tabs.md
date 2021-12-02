@@ -1,6 +1,7 @@
 ---
 title: tabs
 titleContent: Tabs
+layout: default-other
 ---
 ## Purpose
 The purpose of this feature is to provides a widget for aggregating and displaying the entries from one or more Web feeds on a Web page. Supported Web feed formats are Atom, RSS, and Media RSS.

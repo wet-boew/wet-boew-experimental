@@ -1,15 +1,22 @@
 ---
 title: Welcome - Web Experience Toolkit
 contentTitle:  Web Experience Toolkit (Experimental)
+layout: default-other
 ---
-Web Experience Toolkit is an Open source code library for building innovative websites that are accessible, usable, interoperable, mobile-friendly and multilingual. This collaborative open source project is led by the Government of Canada. 
+Web Experience Toolkit is an Open source code library for building innovative websites that are accessible, usable, interoperable, mobile-friendly and multilingual. This collaborative open source project is led by the Government of Canada.
 
 Table of Contents
 -----------------
+* [Working examples](#working-examples)
 * [Purpose](#purpose)
 * [Code Quality](#code-quality)
 * [Golden Rules to remeber](#golden-rules-to-remeber)
 * [Making A Pull Request](#making-a-pull-request)
+
+Working examples
+-------
+* [Tabs](tabs.html)
+* [Feed](feed.html)
 
 Purpose
 -------
