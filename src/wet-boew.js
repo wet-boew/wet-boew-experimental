@@ -39,9 +39,9 @@ require(['core/dom/stylesheet'], function( Stylesheet  ) {
 
                 // Call the init() function when defined (like in wb-xtemplate)
                 // # wb-carousel.js use the global object customElements.define as per the living standard. So it don't need this init call.
-                //if ( element && element.init ) {
-                //    element.init( node );
-               // }
+                if ( element && element.init ) {
+                    element.init( node );
+                }
 
             }) ;
 		}

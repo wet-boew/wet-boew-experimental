@@ -17,6 +17,9 @@ Working examples
 -------
 * [Tabs](tabs.html)
 * [Feed](feed.html)
+* [wb-render](wb-render.html)
+* [wb-xtemplate](wb-xtemplate.html)
+* [wb-barebone](wb-barebone.html)
 
 Purpose
 -------

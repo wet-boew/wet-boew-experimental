@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>wb-render - Welcome - Web Experience Toolkit v5</title>
-    <link rel="stylesheet" href="../theme/css/style.css">
-    
-</head>
-<body class="max-width wb-center wb-slack">
+---
+title: wb-render
+layout: default-other
+---
     <h1><code>&lt;wb-render&gt;</code> - Web Experience Toolkit - version 5 (Wet5)</h1>
 
 	<!--
@@ -21,23 +14,23 @@
 		function updateData( event ) {
 			var elm = event.currentTarget,
 				wbRender = document.getElementById( "updateMe" );
-			
+
 			wbRender.databind.placeholderText = elm.value;
 		}
-		
+
 		var buttons = document.querySelectorAll("button");
 		buttons.forEach( function( btn ) {
-			
+
 			btn.addEventListener( "click", updateData );
-		
+
 		} );
 	</script>
 	<!--
-	   * END Data interaction demo 
+	   * END Data interaction demo
 	   * -->
-	
-	
-	<!-- 
+
+
+	<!--
 	 *
 	 * Explicit
 	 *
@@ -54,6 +47,7 @@
 }'>
 		<!-- Initial HTML here -->
 	</wb-render>
+{% raw %}
 	<template id="myID">
 		<p>{{prop}}</p>
 		<ul>
@@ -69,8 +63,9 @@
 
 		<input data-wb5-bind="placeholder@placeholderText" style="width:100%" />
 	</template>
+{% endraw %}
 
-	<!-- 
+	<!--
 	 *
 	 * Implicit
 	 *
@@ -81,7 +76,3 @@
 		</template>
 		< ! - - Initial HTML here - - >
 	</wb-render> -->
-
-    <script src="../src/vendor/requirejs/2.3.6/require.js" data-main="../src/wet-boew.js"></script>
-</body>
-</html>
