@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'en' }}" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+	{%- include head.html -%}
+    </head>
+    <body class="{{ page.class | default: 'secondary' }}" vocab="http://schema.org/" typeof="WebPage">
+    	{% assign hdr = page.lang | default: 'en' | append: "/header.html" %}
+        {%- include {{ hdr }} -%}
+        <main property="mainContentOfPage" typeof="WebPageElement" class="container">
+            {{ content }}
+        </main>
+        {% assign ftr = page.lang | default: 'en' | append: "/footer.html" %}
+        {%- include {{ ftr }} -%}
+    </body>
+</html>
