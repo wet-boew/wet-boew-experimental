@@ -3,7 +3,7 @@
     <head>
 	{%- include head.html -%}
     </head>
-    <body class="{{ page.class | default: 'secondary' }}" vocab="http://schema.org/" typeof="WebPage">
+    <body class="{{ page.class | default: 'secondary' }} max-width wb-center wb-slack" vocab="http://schema.org/" typeof="WebPage">
     	{% assign hdr = page.lang | default: 'en' | append: "/header.html" %}
         {%- include {{ hdr }} -%}
         <main property="mainContentOfPage" typeof="WebPageElement" class="container">

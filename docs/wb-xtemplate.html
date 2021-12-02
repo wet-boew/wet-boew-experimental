@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>wb-xtemplate - Welcome - Web Experience Toolkit v5</title>
-    <link rel="stylesheet" href="../theme/css/style.css">
-    
-</head>
-<body class="max-width wb-center wb-slack">
+---
+title: wb-xtemplate
+layout: default-other
+---
+{% raw %}
     <h1><code>&lt;wb-xtemplate&gt;</code> - Web Experience Toolkit - version 5 (Wet5)</h1>
     <p>It extract the DOM to a JSO. Take a look at the browser console and to the DOM property wbdata of this custom element.</p>
-    <wb-xtemplate v="5" 
+    <wb-xtemplate v="5"
         selector='{
             "/data1": ".data1",
             "/data2": ".data2",
@@ -102,8 +96,8 @@
   }
 }</code></pre>
 	</details>
-	
-	<wb-xtemplate v="5" 
+
+	<wb-xtemplate v="5"
         selector='{
             "/name": ".name",
             "/telephone": "@class .phone",
@@ -120,7 +114,7 @@
 		<h3>Details</h3>
         <p class="details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et est et sem tincidunt posuere. Praesent bibendum vulputate sapien. Vivamus efficitur volutpat ex. Donec semper dolor id tempus porta. Integer mattis posuere velit, sed sollicitudin felis consectetur quis. Fusce porttitor rhoncus vestibulum. Morbi quis porta tortor. Integer dolor libero, tristique eget tortor id, ullamcorper fringilla ipsum.</p>
     </wb-xtemplate>
-	
+
 	<details><summary>Produce an JS object like</summary>
 	<pre><code>{
   "name": {},
@@ -128,9 +122,9 @@
   "details": {}
 }</code></pre>
 	</details>
-	
-	
-	<wb-xtemplate v="5" 
+
+
+	<wb-xtemplate v="5"
         selector='{
             "/subject": "p",
             "/listing/": "tbody tr",
@@ -204,6 +198,4 @@
         <dd>TODO: Prefix with "json@" follow by the attribute name -> The attribute value are going to be parsed into JSON and used as value</dd>
     </dl>
 
-    <script src="../src/vendor/requirejs/2.3.6/require.js" data-main="../src/wet-boew.js"></script>
-</body>
-</html>
+{% endraw %}
