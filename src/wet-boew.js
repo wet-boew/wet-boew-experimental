@@ -9,31 +9,39 @@ var polyfills = [],
 // CONFIGURATION
 // =========================
 requirejs.config({
-    config: {
-        i18n: {
-            locale: lang
-        }
-    }
+   config: {
+        //i18n: {
+        //    locale: lang
+       // }
+   }
 });
 
-require(['i18n!nls/dctnry', 'lib/dom/stylesheet'], function( i8n, Stylesheet  ) {
+/* COMPATIBILITY CODEBASES
+ ----------------------------- */
+define( 'jquery', [], function() { return ( window.jQuery ) ? window.jQuery : {}; } );
+
+
+
+require(['core/dom/stylesheet'], function( Stylesheet  ) {
     // Lets bind the dictionary to the window-object
-    window.i18n = i8n;
+
 
     let insertListener = function( event ) {
-		if ( 
+		if (
             event.animationName === "nodeInserted" &&
             event.target.tagName.startsWith("WB-")
         ) {
-            let node = Object.assign( event.target, { i18n: i8n} ),
-                tagName = node.tagName.toLowerCase();
-            require( [ "plugin/" + tagName + "/" + tagName ], function( element ) {
+            //let node = Object.assign( event.target, { i18n: i8n} ),
+            let node = event.target,
+                tagName = node.tagName.toLowerCase(),
+                id = tagName.substring( tagName.indexOf('-') + 1 );
+            require( [ "plugin/" + id + "/" + id ], function( element ) {
 
                 // Call the init() function when defined (like in wb-xtemplate)
                 // # wb-carousel.js use the global object customElements.define as per the living standard. So it don't need this init call.
-                if ( element && element.init ) {
-                    element.init( node );
-                }
+                //if ( element && element.init ) {
+                //    element.init( node );
+               // }
 
             }) ;
 		}
@@ -48,6 +56,6 @@ require(['i18n!nls/dctnry', 'lib/dom/stylesheet'], function( i8n, Stylesheet  ) 
 	document.head.appendChild(
 		Stylesheet.css("@keyframes nodeInserted {\nfrom { opacity: 0.99; }\nto { opacity: 1; }\n}\n\n[v] {animation-duration: 0.001s;animation-name: nodeInserted;}" )
     );
-    
-    console.log( "WET 5 lives.. greeting >> " + i8n.greeting );
+
+    //console.log( "WET 5 lives.. greeting >> " + i8n.greeting );
 });
