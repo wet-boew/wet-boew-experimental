@@ -3,6 +3,7 @@
 
 /* Modular scale, colors, etc. */
 @import url("lib/variables.css");
+@import url("lib/gc-design-system-variable-proposal.css");
 
 /* Components */
 @import url("layouts/wb-image.css");
