@@ -45,7 +45,7 @@ async function loadJS ( vendorName ) {
 	let vendorInfo = vendorSRI[ vendorName ];
 
 	// Fetch the vendor lib and ensure it is what we expect
-	await fetch( "/src/vendor/" + vendorName + "/" + vendorInfo.main, { integrity: vendorInfo.integrity } ).then( function( response ) {
+	await fetch( "./src/vendor/" + vendorName + "/" + vendorInfo.main, { integrity: vendorInfo.integrity } ).then( function( response ) {
 
 		// Is the resource are the one expected
 		if ( !response.ok ) {
