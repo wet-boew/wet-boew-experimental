@@ -1,8 +1,3 @@
-// https://github.com/janl/node-jsonpointer/blob/master/jsonpointer.js
-
-define( [ ], function( ) {
-    "use strict";
-
 var hasExcape = /~/
 var escapeMatcher = /~[01]/g
 function escapeReplacer (m) {
@@ -23,6 +18,8 @@ function setter (obj, pointer, value) {
   var hasNextPart
 
   for (var p = 1, len = pointer.length; p < len;) {
+    if (pointer[p] === 'constructor' || pointer[p] === 'prototype' || pointer[p] === '__proto__') return obj
+
     part = untilde(pointer[p++])
     hasNextPart = len > p
 
@@ -55,6 +52,11 @@ function compilePointer (pointer) {
     if (pointer[0] === '') return pointer
     throw new Error('Invalid JSON pointer.')
   } else if (Array.isArray(pointer)) {
+    for (const part of pointer) {
+      if (typeof part !== 'string' && typeof part !== 'number') {
+        throw new Error('Invalid JSON pointer. Must be of type string or number.')
+      }
+    }
     return pointer
   }
 
@@ -93,10 +95,6 @@ function compile (pointer) {
   }
 }
 
-return {
-  get: get,
-  set: set,
-  compile: compile
-}
-
-} );
+exports.get = get
+exports.set = set
+exports.compile = compile

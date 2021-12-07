@@ -5,20 +5,9 @@
  * @requires
  */
 
-define( [ "../../vendor/jsonpointer/jsonpointer" ], function( jsonPointer ) {
-    "use strict";
+export { init };
 
-
-    // Plugin init function
-	function init( elm ) {
-
-		console.log( "plugin initiated" );
-	}
-
-	
-	// Public expose function
-	return {
-		init: init
-	};
-} );
-
+// Plugin init function
+function init( elm ) {
+	console.log( "plugin initiated" );
+}

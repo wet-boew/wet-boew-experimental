@@ -5,9 +5,17 @@
  * @requires
  */
 
+import { loadJS } from "../../core/utils/fetch.js"
+
+// Load the third party library
+await loadJS( "jsonpointer" );
+
+export { init };
+
+
 //
 // What the plugin do
-// 
+//
 // * Take a JSO and parse in inside a tempalte
 // * Expose that JSO globally in the project
 // * Have change to the JSO be reflected in the template
@@ -24,7 +32,7 @@
 
 /*
 
-RENDER 
+RENDER
 <wb-xtemplate data="{ <JSON STRING> }">
 
 	<template>
@@ -54,18 +62,18 @@ var DataExtractor = {
 		{
 			// Data pointer
 			prop: "NameOfTheProperties",
-			
+
 			// How to interprete the data being read
 			isMultiple: yes|no // If there is multiple (QuerySelectorAll) or single (QuerySelector)
-			
+
 			readAs: "Array|SingleChoice|TextualValue-Value|RegExValue-Value|Boolean|Numeric|DateTime",
-			
+
 			mapValue: "String|RegEx"
-			
+
 			mapValue: {
 				"":"",
 				"Value FROM CSS Selector":"Value to keep internally"
-				
+
 				// i18n Mapping
 				"Value FROM CSS Selector": [
 					{
@@ -78,12 +86,12 @@ var DataExtractor = {
 					}
 				]
 			}
-			
+
 			// Inverse of mapValue
 			mapReturn: {
 				"":"",
 				"Value to keep internally": "Value FROM CSS Selector"
-				
+
 				// i18n Mapping
 				"Value to return": [
 					{
@@ -96,16 +104,16 @@ var DataExtractor = {
 					}
 				]
 			}
-			
-			
-			
+
+
+
 			// Selector Info
 			type: "CssSelector",
 			value: ".data1"
-	
+
 			// Sub inner object
 			refinedBy: {
-			
+
 			}
 		}
 	]
@@ -126,8 +134,6 @@ var DataExtractor = {
 
 
 
-define( [ "../../vendor/jsonpointer/jsonpointer" ], function( jsonPointer ) {
-    "use strict";
 
 
     let namespaceData = {};
@@ -136,7 +142,7 @@ define( [ "../../vendor/jsonpointer/jsonpointer" ], function( jsonPointer ) {
 
 	//let fullDataExtracted = {};
 	let tripleIndexes = {};
-	
+
     // Plugin init function
 	function init( elm ) {
 
@@ -199,7 +205,7 @@ Selector attribute
 Transit object
 
 [
-	[	
+	[
 		{
 			"pointer":"/data1",
 			"value":".data1",
@@ -270,7 +276,7 @@ Final Object (with a reference to a DOM Node)
 }
 
 
-Referent object, RDF quad/triple 
+Referent object, RDF quad/triple
 
 {
 	"data1":{},
@@ -318,7 +324,7 @@ Referent object, RDF quad/triple
 }
 
 Graph indexes
-{ 
+{
 	"#PluginId" : { triple object }
 }
 
@@ -349,8 +355,8 @@ Triple indexes
 
 			// If the first character is not a "/", then assume the user use a dot notation
 			let pointer = key;
-			
-			
+
+
 			let attributeName,
 				valueParsed = value;
 			// Do we need to get from an attribute?
@@ -360,7 +366,7 @@ Triple indexes
 
 				// Remove the attribute selector
 				valueParsed = valueParsed.substring( attributeName.length + 2 );
-			
+
 			}
 
 			if( pointer.substring(0, 1) !== "/" ) {
@@ -372,7 +378,7 @@ Triple indexes
 			let isList = pointer.lastIndexOf( "/" ) === pointer.length - 1,
 				deep = ( pointer.match( /\//g ) || [] ).length - (isList ? 1 : 0) - 1,
 				path = isList ? pointer.slice( 0, -1 ) : pointer,
-				propParsed = path.match( /(^(.+?\/)+)/ ), 
+				propParsed = path.match( /(^(.+?\/)+)/ ),
 				namespace = propParsed && propParsed[ 0 ] || "/",
 				propName = path.substring( namespace.length ),
 				prop = "/" + propName;
@@ -438,12 +444,12 @@ Triple indexes
 				const path = "/" + transitObj.subspace.slice( 0, -1 );
 				let elmFromSubspace = jsonPointer.get( finalObj, path );
 				let valSubSpace = {};
-				
+
 				if ( elmFromSubspace ) {
 					elm = elmFromSubspace;
 					valSubSpace = undefined; // To remove the existing reference
-				} 
-				
+				}
+
 				namespaceElement[ transitObj.namespace ] = elm;
 				jsonPointer.set( finalObj, path, valSubSpace);
 
@@ -474,39 +480,39 @@ Triple indexes
 
 			// ok, let fix this obj
 			let domSelected = elm.querySelector( transitObj.value );
-			
+
 			// Ensure an element is selected
 			if ( !domSelected ) {
 				throw "Invalid CSS selector: " + transitObj.value;
 			}
-			
+
 			// Check if we need to grab the textContent or the attribute content
 			if( transitObj.attribute ) {
 				domSelected = domSelected.getAttributeNode( transitObj.attribute );
 			}
-			
-			
+
+
 			jsonPointer.set( finalObj, transitObj.prop, domSelected );
-			
+
 			let propPath = transitObj.prop;
-			
+
 			if ( transitObj && transitObj.namespace && lstIndex !== undefined ) {
 				//console.log( transitObj );
 				propPath = transitObj.namespace + "[" + lstIndex + "]" + propPath;
 			}
-			
+
 			tripleIndexes[ propPath ] = {
 				d: domSelected,
 				v: domSelected.textContent
 			}
-			
-	/*		
+
+	/*
 			console.log( transitObj.prop );
 			console.log( finalObj );
 			console.log( finalFullObj );
 			jsonPointer.set( finalFullObj, transitObj.prop, {} );
-			
-			
+
+
 			Object.defineProperty( finalFullObj, transitObj.propName, {
 				get: function get() {
 					return domSelected.textContent;
@@ -519,7 +525,7 @@ Triple indexes
 				}
 			});
 */
-			
+
 			if ( transitObj.prop === "/data5" ) {
 				//throw "Stop me"
 			}
@@ -541,9 +547,9 @@ Triple indexes
 
 			if( !transitObj.subspaceMod && transitObj.subspace ) {
 
-				// Remove 1 level 
+				// Remove 1 level
 				console.log( transitObj.subspace );
-				
+
 				const idxOfSubSpace = transitObj.subspace.indexOf( "/" );
 				let newSubSpace = "";
 				if ( idxOfSubSpace !== -1 ) {
@@ -604,7 +610,7 @@ Triple indexes
 
 			const objToSave = extractSubObj( elm, namespaceData[ transitObj.pointer ] );
 			jsonPointer.set( finalObj, transitObj.path, objToSave );
-			
+
 		}
 
 	}
@@ -620,7 +626,7 @@ Triple indexes
       return signalHandler();
     });
   }
-  
+
   function observe(property, signalHandler) {
 
     if (!signals[property]) signals[property] = [];
@@ -649,8 +655,3 @@ Triple indexes
       }
     });
   }
-	return {
-		init: init
-	};
-} );
-
