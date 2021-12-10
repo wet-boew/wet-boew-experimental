@@ -5,6 +5,8 @@
  * @author WET Community
  */
 
+import { relativeSrcPath } from "../../wet-boew.js";
+
 export { loadJS }
 
 let vendorSRI = {
@@ -12,12 +14,22 @@ let vendorSRI = {
 	// https://github.com/janl/node-jsonpointer/blob/master/jsonpointer.js
 	jsonpointer: {
 		integrity: "sha256-XGf6dDC59THcCt8JSIIj5c/V9/1ZL1jXsHVFgqV3xRY=",
-		main: "jsonpointer.js",
+		main: "jsonpointer/jsonpointer.js",
 		contentType: "application/javascript",
 		UMDheader: "( function( wnd ) {\n\"user strict\";\nlet exports = {};\n",
 		UMDfooter: "wnd.jsonPointer = exports;\n} )( window );",
 		testReady: function() {
 			return window.jsonPointer;
+		}
+	},
+
+	// https://github.com/fabiospampinato/cash
+	cash: {
+		integrity: "sha256-cRTLtaZVQmlJzAp5VTUMG1wCTfNDM1U90b45qBrIUfM=",
+		main: "cash.js",
+		contentType: "application/javascript",
+		testReady: function() {
+			return window.cash;
 		}
 	}
 };
@@ -45,7 +57,7 @@ async function loadJS ( vendorName ) {
 	let vendorInfo = vendorSRI[ vendorName ];
 
 	// Fetch the vendor lib and ensure it is what we expect
-	await fetch( "./src/vendor/" + vendorName + "/" + vendorInfo.main, { integrity: vendorInfo.integrity } ).then( function( response ) {
+	await fetch( relativeSrcPath + "src/vendor/" + vendorInfo.main, { integrity: vendorInfo.integrity } ).then( function( response ) {
 
 		// Is the resource are the one expected
 		if ( !response.ok ) {
