@@ -10,12 +10,14 @@ let pageAnchor = document.createElement( "a" );
 pageAnchor.href = window.location;
 
 let pageUrlFolders = pageAnchor.pathname.replace( /^([^/])/, "/$1" ).split( "/" ).reverse(),
-	relativeSrcPath = "";
+	relativeSrcPath = "",
+	relSrcPathCompile = "";
 for ( let i = 0; i < pageUrlFolders.length; i++ ) {
 
 	if ( pageUrlFolders[ i ] !== "src" ) {
-		relativeSrcPath += "../"
+		relSrcPathCompile += "../";
 	} else if ( pageUrlFolders[ i ] === "src" ) {
+		relativeSrcPath = relSrcPathCompile;
 		break;
 	}
 }
