@@ -12,9 +12,13 @@ Promoting and sharing information from Web feeds on a Web page
 
 ## Working Example
 
-<wb-tabs v="5"></wb-tabs>
-
+<div>
+	<div>
+		<wb-tabs v="5"></wb-tabs>
+	</div>
+</div>
 <wb-tabs v="5"></wb-tabs>
 
 ## How to implement
 
+yep

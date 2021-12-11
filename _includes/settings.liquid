@@ -1,0 +1,25 @@
+{%- comment -%}
+
+++++++++++++++++++++++++++++++++++
++ Site settings
++
++ Global variable used across this theme
+++++++++++++++++++++++++++++++++++
+
+{%- endcomment -%}
+{% assign srcFolder = page.url | split: "/" | reverse %}
+{% capture srcRelativeFolder -%}
+
+	{%- for fldr in srcFolder -%}
+
+		{%- if fldr != "src" -%}
+			../
+		{%- elsif fldr == "src" -%}
+			{%- break -%}
+		{%- endif -%}
+	{%- endfor -%}
+
+{%- endcapture %}
+{% if srcRelativeFolder == "" %}
+	{% assign srcRelativeFolder = "./" %}
+{% endif %}

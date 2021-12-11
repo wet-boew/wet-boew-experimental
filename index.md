@@ -15,11 +15,11 @@ Table of Contents
 
 Working examples
 -------
-* [Tabs](tabs.html)
-* [Feed](feed.html)
-* [wb-render](wb-render.html)
-* [wb-xtemplate](wb-xtemplate.html)
-* [wb-barebone](wb-barebone.html)
+* [Tabs](src/components/tabs/tabs.html)
+* [Feed](src/components/feed/feed.html)
+* [wb-render](src/components/render/wb-render.html)
+* [wb-xtemplate](src/components/xtemplate/wb-xtemplate.html)
+* [wb-barebone](src/components/barebone/wb-barebone.html)
 
 Purpose
 -------
