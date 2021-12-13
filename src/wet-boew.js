@@ -2,8 +2,9 @@
 import * as Stylesheet from "./core/dom/stylesheet.js";
 import { loadJS } from "./core/utils/fetch.js"
 
-
 export { relativeSrcPath };
+
+const componentsNamespace = /^WB-|^GC-/
 
 // Init, calculate the root folder --Needed for the developer version--
 let pageAnchor = document.createElement( "a" );
@@ -45,7 +46,7 @@ var polyfills = [],
 
 // Load module dynamically
 let insertListener = function( event ) {
-	if ( event.animationName === "nodeInserted" && event.target.tagName.startsWith( "WB-" ) ) {
+	if ( event.animationName === "nodeInserted" && event.target.tagName.match( componentsNamespace ) ) {
 
 		//let node = Object.assign( event.target, { i18n: i8n} ),
 		let node = event.target,
@@ -57,7 +58,7 @@ let insertListener = function( event ) {
 		let isComponent = node.parentNode.nodeName === "MAIN" || isNodeAComponent( node ),
 			folderImport = isComponent ? "./components/" : "./sites/";
 
-		import( folderImport + id + "/" + id + ".js" )
+		import( folderImport + tagName + "/" + id + ".js" )
 			.then( ( module ) => {
 				// Call the init() function when defined (like in wb-xtemplate)
 				// # wb-carousel.js use the global object customElements.define as per the living standard. So it don't need this init call.
