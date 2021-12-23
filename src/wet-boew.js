@@ -4,8 +4,6 @@ import { loadJS } from "./core/utils/fetch.js"
 
 export { relativeSrcPath };
 
-const componentsNamespace = /^WB-|^GC-/
-
 // Init, calculate the root folder --Needed for the developer version--
 let pageAnchor = document.createElement( "a" );
 pageAnchor.href = window.location;
@@ -46,40 +44,58 @@ var polyfills = [],
 
 // Load module dynamically
 let insertListener = function( event ) {
-	if ( event.animationName === "nodeInserted" && event.target.tagName.match( componentsNamespace ) ) {
-
-		//let node = Object.assign( event.target, { i18n: i8n} ),
-		let node = event.target,
-			tagName = node.tagName.toLowerCase(),
-			id = tagName.substring( tagName.indexOf('-') + 1 );
-
-		// Evaluate the type of component: sites; components, templates
-
-		let isComponent = node.parentNode.nodeName === "MAIN" || isNodeAComponent( node ),
-			folderImport = isComponent ? "./components/" : "./sites/";
-
-		import( folderImport + tagName + "/" + id + ".js" )
-			.then( ( module ) => {
-				// Call the init() function when defined (like in wb-xtemplate)
-				// # wb-carousel.js use the global object customElements.define as per the living standard. So it don't need this init call.
-				if ( module.init ) {
-					module.init( node );
-				}
-			}
-		);
+	if ( event.animationName === "nodeInserted" ) {
+		importLiveComponent( event.target );
 	}
-}
-
-let isNodeAComponent = function( node ) {
-	var parents = $( node ).parentsUntil( "main");
-	return !!( parents.length && parents[ parents.length - 1 ].nodeName !== "FOOTER" );
 };
 
+let importLiveComponent = function( node ) {
+	let tagName = node.tagName.toLowerCase(),
+		idxComponentName = tagName.indexOf('-'),
+		componentName = tagName.substring( idxComponentName + 1 );
+
+	// Check if we have customized built-in element
+	if ( idxComponentName === -1 ) {
+		let isBuiltIn = node.getAttribute( "is" );
+		if ( !isBuiltIn ) {
+			throw "Invalid live import component: " + tagName;
+		}
+		tagName = isBuiltIn;
+		idxComponentName = isBuiltIn.indexOf('-');
+		componentName = isBuiltIn.substring( idxComponentName + 1 );
+	}
+	if ( idxComponentName === -1 ) {
+		throw "Invalid custom element name:" + tagName;
+	}
+
+	// Evaluate the type of component: sites; components, templates
+	let isComponent = node.parentNode.nodeName === "MAIN" || isNodeAComponent( node ),
+		folderImport = isComponent ? "./components/" : "./sites/";
+
+	// import the component with support for legacy initialization
+	import( folderImport + tagName + "/" + componentName + ".js" )
+		.then( ( module ) => {
+			// Call the init() function when defined (like in wb-xtemplate)
+			if ( module.init ) {
+				module.init( node );
+			}
+		}
+	);
+};
+
+let isNodeAComponent = function( node ) {
+	let parents = $( node ).parentsUntil( "main"),
+		lastParent = parents.length && parents[ parents.length - 1 ].nodeName;
+	return !!( lastParent && lastParent !== "FOOTER" && lastParent !== "HTML" );
+};
+
+// First initialization, including elements that are not in scope of animation
+[].forEach.call( document.querySelectorAll( ":not(:defined)" ), function( elm ) {
+	importLiveComponent( elm );
+} );
 
 // Add the observer event binding
-document.addEventListener( "animationstart", insertListener, false ) ; // standard+ firefox
-document.addEventListener( "MSAnimationStart", insertListener, false ) ; // IE
-document.addEventListener( "webkitAnimationStart", insertListener, false ) ; // Chrome + Safari
+document.addEventListener( "animationstart", insertListener, false ) ;
 document.head.appendChild (
-	Stylesheet.css( "@keyframes nodeInserted {\nfrom { opacity: 0.99; }\nto { opacity: 1; }\n}\n\n[v] {animation-duration: 0.001s;animation-name: nodeInserted;}" )
+	Stylesheet.css( "@keyframes nodeInserted {\nfrom { opacity: 0.99; }\nto { opacity: 1; }\n}\n\n:not(:defined) {animation-duration: 0.001s;animation-name: nodeInserted;}" )
 );

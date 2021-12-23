@@ -1,0 +1,28 @@
+---
+title: CSS stage 0 polyfill (for development)
+layout: default-other
+---
+<h1>{{ page.title }}</h1>
+
+<p>The purpose of this feature is to provides allow author to write pure CSS at stage 0+ and test it live into a browser. It is only intended to be used to support an in-browser development environment.</p>
+
+<h2>Working Example</h2>
+
+<p>We have the following nesting rule CSS (Stage 1) in our code base for testing, the expectation is see the "hello world" text to turn blue after the CSS polyfill <code>wb.dev-css</code> has initiated</p>
+<p>Lorem ipsum <strong class="iamblue">hello world</strong></p>
+<pre><code>&lt;style&gt;
+/* For testing purpose with wb.dev-css */
+p  {
+	&amp; .iamblue {
+		color: blue;
+	}
+}
+&lt;/style&gt;
+
+&lt;p&gt;Lorem ipsum &lt;strong class=&quot;iamblue&quot;&gt;hello world&lt;/strong&gt;&lt;/p&gt;</code></pre>
+
+<h2>Technical note</h2>
+
+<p>Depend on <a href="https://preset-env.cssdb.org/">postCSS<a/></p>
+<p>That component is a customized built-in element that is build on top of a link element.</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;{{ srcRelativeFolder }}assets/basic/1.0/css/style.css&quot; <strong>is=&quot;wb.dev-css&quot;</strong> /&gt;</code></pre>

@@ -31,6 +31,15 @@ let vendorSRI = {
 		testReady: function() {
 			return window.cash;
 		}
+	},
+
+	// Curstom browser build of postCSS
+	postcss: {
+		main: "postcss.js",
+		contentType: "application/javascript",
+		testReady: function() {
+			return window.postcss;
+		}
 	}
 };
 
@@ -54,10 +63,11 @@ let whenLibReady = function( testCallback, readyCallback, failCallback, nbTry ) 
 async function loadJS ( vendorName ) {
 
 	// Get vendor library integration information
-	let vendorInfo = vendorSRI[ vendorName ];
+	let vendorInfo = vendorSRI[ vendorName ],
+		fetchOpt = vendorInfo.integrity ? { integrity: vendorInfo.integrity } : { };
 
 	// Fetch the vendor lib and ensure it is what we expect
-	await fetch( relativeSrcPath + "src/vendor/" + vendorInfo.main, { integrity: vendorInfo.integrity } ).then( function( response ) {
+	await fetch( relativeSrcPath + "src/vendor/" + vendorInfo.main, fetchOpt ).then( function( response ) {
 
 		// Is the resource are the one expected
 		if ( !response.ok ) {

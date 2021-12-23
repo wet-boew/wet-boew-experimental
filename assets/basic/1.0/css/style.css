@@ -400,3 +400,10 @@ form > * + * {
 .checkout-form {
   position: relative;
 }
+
+/* For testing purpose with wb.dev-css */
+p  {
+	& .iamblue {
+		color: blue;
+	}
+}
