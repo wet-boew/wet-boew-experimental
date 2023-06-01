@@ -1,0 +1,37 @@
+
+<template data-if="/acr:asset" data-cond="fn:isArray">
+  <p>Supporting documents:</p>
+  <ul>
+    <template data-iterate="/acr:asset">
+      <li>
+        <template data-if="@type" data-operand="eq" data-value="acr:Attachment">
+          <a href="acr:content">dct:title</a>
+        </template>
+        <template data-if="@type" data-operand="eq" data-value="acr:AttachmentImage">
+          <img src="acr:content" alt="dct:title" />
+        </template>
+        <template data-if="@type" data-operand="eq" data-value="acr:AttachmentSourceCode">
+          <p>dct:title</p>
+          <pre><code>acr:content</code></pre>
+        </template>
+        <template data-if="@type" data-operand="eq" data-value="acr:AttachmentJson">
+          <p>dct:title</p>
+          <pre><code>acr:content | jsonToString</code></pre>
+        </template>
+        <template data-if="@type" data-operand="eq" data-value="acr:AttachmentHtml">
+          <p>dct:title</p>
+          <pre><code>acr:content | DOM Purify Safe</code></pre>
+        </template>
+      </li>
+    </template>
+  </ul>
+</template>
+<template data-if="/acr:asset" data-cond="fn:isLiteral">
+  <p>Supporting document:</p>
+  <template data-if="@type" data-operand="eq" data-value="acr:AttachmentImage">
+    <img src="acr:content" alt="dct:title" />
+  </template>
+  <template data-if="@type" data-operand="neq" data-value="acr:AttachmentImage">
+    <p><a href="acr:content">dct:title</a></p>
+  </template>
+</template>
